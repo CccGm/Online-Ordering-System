@@ -6,9 +6,13 @@ import TabNavigator from './TabNavigator';
 import {
   CHANGEPASSWORD,
   DRAWER_TAB_N,
+  HISTORY,
+  LIKE,
   PRODUCTDETAILS,
 } from '../constants/routeName';
 import ChangePassword from '../components/ChangePassword';
+import LikeScreen from '../screens/LikeScreen';
+import HistoryScreen from '../screens/HistoryScreen';
 const Stack = createNativeStackNavigator();
 const DashboardNavigator = () => {
   return (
@@ -19,6 +23,8 @@ const DashboardNavigator = () => {
       />
       <Stack.Screen name={PRODUCTDETAILS} component={ProductDetails} />
       <Stack.Screen name={CHANGEPASSWORD} component={ChangePassword} />
+      <Stack.Screen name={LIKE} component={LikeScreen} />
+      <Stack.Screen name={HISTORY} component={HistoryScreen} />
     </Stack.Navigator>
   );
 };

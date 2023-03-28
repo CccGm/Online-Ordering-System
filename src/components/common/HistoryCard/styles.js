@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export default styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '95%',
     marginTop: 15,
     height: 150,
     elevation: 8,
@@ -10,7 +10,8 @@ export default styles = StyleSheet.create({
     backgroundColor: '#efefee',
     flexDirection: 'row',
     padding: 10,
-    borderRadius: 15,
+    borderRadius: 18,
+    marginHorizontal: 15,
   },
   imageContainer: {
     width: 125,
@@ -27,24 +28,5 @@ export default styles = StyleSheet.create({
   text: {
     fontSize: 22,
     marginTop: 8,
-  },
-  counterContainer: {
-    flexDirection: 'row',
-    marginLeft: '25%',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  borderBtn: {
-    borderColor: 'grey',
-    borderRadius: 5,
-    borderWidth: 1,
-    height: 40,
-    width: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  boderBtnText: {
-    fontWeight: 'bold',
-    fontSize: 28,
   },
 });

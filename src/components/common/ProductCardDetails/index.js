@@ -17,7 +17,7 @@ const ProductCardDetails = props => {
   const iteData = props.route.params.data;
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, elevation: 8, shadowColor: '#370247'}}>
       <View style={styles.iconContainer}>
         <Icon
           name={'arrow-back'}

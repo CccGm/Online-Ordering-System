@@ -3,12 +3,14 @@ import {StyleSheet} from 'react-native';
 export default styles = StyleSheet.create({
   container: {
     width: '100%',
-    marginVertical: 10,
+    marginVertical: 15,
     height: 150,
     backgroundColor: '#efefee',
     flexDirection: 'row',
     padding: 10,
     borderRadius: 15,
+    elevation: 8,
+    shadowColor: '#370247',
   },
   imageContainer: {
     width: 125,

@@ -36,7 +36,6 @@ const TabNavigator = () => {
         inactiveTintColor: '#555',
         activeBackgroundColor: '#fff',
         inactiveBackgrondColor: '#999',
-        showLabel: true,
         labelStyle: {fontSize: 20},
       })}>
       <Tab.Screen name={DASHBOARD} component={DashboardScreen} />

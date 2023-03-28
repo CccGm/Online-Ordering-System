@@ -4,7 +4,7 @@ import ProfileComponent from '../components/ProfileComponent';
 
 const ProfileScreen = () => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <ProfileComponent />
     </View>
   );
