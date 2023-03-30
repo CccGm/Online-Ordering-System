@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ScrollView,
   StatusBar,
@@ -15,13 +15,25 @@ import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
 import {LOGIN, OTPVERIFY} from '../../constants/routeName';
+import {useDispatch, useSelector} from 'react-redux';
+import {Register_User} from '../../redux/Actions';
 
 const RegisterComponent = () => {
+  const dispatch = useDispatch();
+  const registerData = useSelector(state => state.RegisterReducer);
   const {navigate} = useNavigation();
   const [data, setData] = useState({
     check_textInputChange: false,
     secureTextEntry: true,
   });
+
+  useEffect(() => {
+    if (registerData.loading == false) {
+      if (registerData.data.status == 1) {
+        navigate(OTPVERIFY);
+      }
+    }
+  }, [registerData]);
 
   const [form, setForm] = useState(null);
 
@@ -45,8 +57,9 @@ const RegisterComponent = () => {
       }
       if ((form.Name && form.Email && form.Mo_No && form.Password) != '') {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.Email)) {
-          Alert.alert('Success', 'Data Submited!');
-          navigate(OTPVERIFY);
+          console.log('dsdjsjsdbsjdbs', form);
+
+          dispatch(Register_User(form));
         } else {
           Alert.alert('Alert', 'email not valid');
         }
@@ -79,10 +92,6 @@ const RegisterComponent = () => {
               autoCapitalize="none"
               onChangeText={val => textInputChange({name: 'Name', val})}
             />
-            {/* 
-          <Animatable.View animation={'bounceIn'}>
-            <Feather name="check-circle" color="green" size={20} />
-          </Animatable.View> */}
           </View>
           <Text style={styles.text_footer}>Mobile Noumber</Text>
           <View style={styles.action}>
@@ -94,9 +103,6 @@ const RegisterComponent = () => {
               autoCapitalize="none"
               onChangeText={val => textInputChange({name: 'Mo_No', val})}
             />
-            {/* <Animatable.View animation={'bounceIn'}>
-            <Feather name="check-circle" color="green" size={20} />
-          </Animatable.View> */}
           </View>
           <Text style={styles.text_footer}>Email</Text>
           <View style={styles.action}>

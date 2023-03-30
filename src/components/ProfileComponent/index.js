@@ -5,9 +5,12 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import {LIKE} from '../../constants/routeName';
+import {useDispatch} from 'react-redux';
+import {setLogout} from '../../redux/Actions';
 
 const ProfileComponent = () => {
   const {navigate} = useNavigation();
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -88,7 +91,10 @@ const ProfileComponent = () => {
             <Text style={styles.menuItemText}>Setting</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple
+          onPress={() => {
+            dispatch(setLogout());
+          }}>
           <View style={styles.menuItem}>
             <Icon name={'logout'} color={'#FF6347'} size={25} />
             <Text style={styles.menuItemText}>Log Out</Text>

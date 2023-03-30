@@ -25,6 +25,9 @@ import styles, {
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
 import {LOGIN} from '../../constants/routeName';
+import LinearGradient from 'react-native-linear-gradient';
+import {useDispatch, useSelector} from 'react-redux';
+import {Register_Otp} from '../../redux/Actions';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -51,9 +54,12 @@ const animateCell = ({hasValue, index, isFocused}) => {
 };
 
 const OTPVerify = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const [value, setValue] = useState('');
   const [minutes, setMinutes] = useState(1);
+  const registerData = useSelector(state => state.RegisterReducer);
+  const otpData = useSelector(state => state.OTPReducer);
   const [seconds, setSeconds] = useState(30);
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -81,10 +87,22 @@ const OTPVerify = () => {
     };
   }, [seconds]);
 
+  useEffect(() => {
+    if (otpData.loading == false) {
+      if (otpData.data.status == 1) {
+        navigation.navigate(LOGIN);
+      }
+    }
+  }, [otpData]);
+
   const VerifyOtp = () => {
     if (value.length == 4) {
-      console.log(value, 'otp Verifyed');
-      navigation.navigate(LOGIN);
+      let data = {
+        userId: registerData.data.data._id,
+        otp: value,
+      };
+      dispatch(Register_Otp(data));
+      // navigation.navigate(LOGIN);
     } else {
       Alert.alert('Alert', 'Please Insert all value');
     }
@@ -175,18 +193,21 @@ const OTPVerify = () => {
           <Text
             style={{
               fontSize: 16,
-              color: seconds > 0 || minutes > 0 ? '#cdd2d8' : '#FF5630',
+              color: seconds > 0 || minutes > 0 ? '#cdd2d8' : '#009387',
             }}>
             Resend Otp
           </Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        style={styles.nextButton}
         onPress={() => {
           VerifyOtp();
         }}>
-        <Text style={styles.nextButtonText}>Verify</Text>
+        <LinearGradient
+          colors={['#08d4c4', '#01ab9d']}
+          style={styles.nextButton}>
+          <Text style={styles.nextButtonText}>Verify</Text>
+        </LinearGradient>
       </TouchableOpacity>
     </SafeAreaView>
   );

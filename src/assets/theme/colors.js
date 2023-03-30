@@ -19,4 +19,7 @@ export default {
   transparentWhite50: '#FFFFFF50cc',
   transparentBlack: '#00000080',
   transparentRed: '#f4433680',
+  btn_linear_1_up: '#08d4c4',
+  btn_linear_2_down: '#01ab9d',
+  btn_linear_back: '#009387',
 };

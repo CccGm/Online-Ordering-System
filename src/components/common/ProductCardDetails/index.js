@@ -59,11 +59,22 @@ const ProductCardDetails = props => {
               lineHeight: 22,
               marginTop: 20,
             }}>
-            {iteData.description}
+            {/* {iteData.description} */}
+            abcbcidc icaibcicb c x setDatadvsvsv feffer htrgrgr e eg eg egegeg e
+            tegeg tgh t egegerg erg erg eg eg eg eger ge eg erge rger g eg eg ge
+            rq3rrewrew wrgterwg sfg gegtwgr trwe t erw ge wer e ge wegwwer
+            gergegew ge egegeg ge back er gew abcbcidc icaibcicb c x
+            setDatadvsvsv feffer htrgrgr e eg eg egegeg e tegeg tgh t egegerg
+            erg erg eg eg eg eger ge eg erge rger g eg eg ge rq3rrewrew wrgterwg
+            sfg gegtwgr trwe t erw ge wer e ge wegwwer gergegew ge egegeg ge
+            back er gew abcbcidc icaibcicb c x setDatadvsvsv feffer htrgrgr e eg
+            eg egegeg e tegeg tgh t egegerg erg erg eg eg eg eger ge eg erge
+            rger g eg eg ge rq3rrewrew wrgterwg sfg gegtwgr trwe t erw ge wer e
+            ge wegwwer gergegew ge egegeg ge back er gew
           </Text>
           <View
             style={{
-              marginTop: 20,
+              marginVertical: 20,
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>

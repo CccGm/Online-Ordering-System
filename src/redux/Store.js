@@ -1,9 +1,13 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
-import loginReducer from '../redux/loginReducer';
+import RegisterReducer from './reducer/RegisterReducer';
+import OTPReducer from './reducer/OTPReducer';
+import LoginReducer from './reducer/LoginReducer';
 
 const rootReduce = combineReducers({
-  loginReducer,
+  RegisterReducer,
+  OTPReducer,
+  LoginReducer,
 });
 
 export const Store = createStore(rootReduce, applyMiddleware(thunk));
