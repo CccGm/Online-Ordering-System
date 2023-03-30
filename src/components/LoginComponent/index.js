@@ -16,7 +16,7 @@ import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
 import {FORGOTPASSWORD, REGISTER} from '../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
-import {Login_User} from '../../redux/Actions';
+import {Login_User} from '../../redux/action/Actions';
 
 const LoginComponent = () => {
   const {navigate} = useNavigation();

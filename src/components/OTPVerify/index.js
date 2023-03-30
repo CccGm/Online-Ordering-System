@@ -27,7 +27,7 @@ import styles, {
 import {LOGIN} from '../../constants/routeName';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
-import {Register_Otp} from '../../redux/Actions';
+import {Register_Otp} from '../../redux/action/Actions';
 
 const {Value, Text: AnimatedText} = Animated;
 

@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import {LIKE} from '../../constants/routeName';
 import {useDispatch} from 'react-redux';
-import {setLogout} from '../../redux/Actions';
+import {setLogout} from '../../redux/action/Actions';
 
 const ProfileComponent = () => {
   const {navigate} = useNavigation();

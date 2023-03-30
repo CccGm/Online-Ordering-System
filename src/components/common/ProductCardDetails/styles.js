@@ -64,8 +64,9 @@ export default styles = StyleSheet.create({
   brnContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 150,
+    width: '100%',
     height: 50,
+    marginTop: 30,
     borderRadius: 30,
     backgroundColor: '#0d9b5bcc',
   },

@@ -3,8 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import AuthNavigator from './AuthNavigator';
 import DashboardNavigator from './DashboardNavigator';
 import {useDispatch, useSelector} from 'react-redux';
-import {restoreStatus} from '../redux/Actions';
-import {ActivityIndicator} from 'react-native-paper';
+import {restoreStatus} from '../redux/action/Actions';
+import SplashScreen from '../screens/SplashScreen';
 
 const AppRoute = () => {
   const {isLogin, loading} = useSelector(state => state.LoginReducer);
@@ -16,7 +16,7 @@ const AppRoute = () => {
   return (
     <NavigationContainer>
       {loading ? (
-        <ActivityIndicator />
+        <SplashScreen screen={true} />
       ) : isLogin == true ? (
         <DashboardNavigator />
       ) : (

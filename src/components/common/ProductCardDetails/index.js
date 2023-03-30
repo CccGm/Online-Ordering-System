@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -11,10 +11,28 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native-animatable';
 import {CART} from '../../../constants/routeName';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  Cart_Data_Add,
+  Remove_Data_In_Add,
+} from '../../../redux/action/CartAction';
+import {CART_ADD_DATA_LOADING} from '../../../constants/actionTypes';
 
 const ProductCardDetails = props => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.AddProductReducer);
   const iteData = props.route.params.data;
+
+  useEffect(() => {
+    // if (data.loading == false) {
+    //   console.log(data.data.data, 'clg data-----------');
+    //   if (data.data.data.status == 1) {
+    //     navigation.navigate(CART);
+    //     dispatch(Remove_Data_In_Add());
+    //   }
+    // }
+  }, []);
 
   return (
     <SafeAreaView style={{flex: 1, elevation: 8, shadowColor: '#370247'}}>
@@ -59,47 +77,16 @@ const ProductCardDetails = props => {
               lineHeight: 22,
               marginTop: 20,
             }}>
-            {/* {iteData.description} */}
-            abcbcidc icaibcicb c x setDatadvsvsv feffer htrgrgr e eg eg egegeg e
-            tegeg tgh t egegerg erg erg eg eg eg eger ge eg erge rger g eg eg ge
-            rq3rrewrew wrgterwg sfg gegtwgr trwe t erw ge wer e ge wegwwer
-            gergegew ge egegeg ge back er gew abcbcidc icaibcicb c x
-            setDatadvsvsv feffer htrgrgr e eg eg egegeg e tegeg tgh t egegerg
-            erg erg eg eg eg eger ge eg erge rger g eg eg ge rq3rrewrew wrgterwg
-            sfg gegtwgr trwe t erw ge wer e ge wegwwer gergegew ge egegeg ge
-            back er gew abcbcidc icaibcicb c x setDatadvsvsv feffer htrgrgr e eg
-            eg egegeg e tegeg tgh t egegerg erg erg eg eg eg eger ge eg erge
-            rger g eg eg ge rq3rrewrew wrgterwg sfg gegtwgr trwe t erw ge wer e
-            ge wegwwer gergegew ge egegeg ge back er gew
+            {iteData.description}
           </Text>
-          <View
-            style={{
-              marginVertical: 20,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
+
+          <TouchableOpacity
+            style={styles.brnContainer}
+            onPress={() => {
+              dispatch(Cart_Data_Add(iteData._id));
             }}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <TouchableOpacity style={styles.borderBtn}>
-                <Text style={styles.boderBtnText}>-</Text>
-              </TouchableOpacity>
-
-              <Text
-                style={[
-                  styles.boderBtnText,
-                  {marginHorizontal: 10, fontWeight: 'bold', color: '#000'},
-                ]}>
-                1
-              </Text>
-
-              <TouchableOpacity style={styles.borderBtn}>
-                <Text style={styles.boderBtnText}>+</Text>
-              </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity style={styles.brnContainer}>
-              <Text style={styles.price}>Add To Cart</Text>
-            </TouchableOpacity>
-          </View>
+            <Text style={styles.price}>Add To Cart</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

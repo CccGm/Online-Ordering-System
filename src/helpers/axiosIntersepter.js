@@ -8,12 +8,13 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async request => {
-    const token = await AsyncStorage.getItem('ACCESS_TOKEN');
-
+    const token = await AsyncStorage.getItem('USER_jwtToken');
+    console.log(token, 'token');
     if (token) {
-      request.headers['Accesstoken'] = token;
+      request.headers['Authorization'] = token;
     } else {
-      delete request.headers['Accesstoken'];
+      console.log(token, 'token');
+      delete request.headers['Authorization'];
     }
     console.log(
       `${new Date()} :: Request`,

@@ -12,10 +12,11 @@ import {
   LOGIN_SUCCESS,
   LOGIN_STATE_RESTORE_REQUEST,
   LOGIN_STATE_RESTORE,
-} from '../constants/actionTypes';
+  PRODUCT_DATA_REMOVE,
+} from '../../constants/actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from '../helpers/axiosIntersepter';
-import {login, register, verify_Register_Otp} from './api';
+import axios from '../../helpers/axiosIntersepter';
+import {login, register, verify_Register_Otp} from '../api';
 
 export const Register_User = data => async dispatch => {
   if (data) {
@@ -69,12 +70,13 @@ export const Login_User = data => async dispatch => {
     dispatch({type: LOGIN_LOADING});
     console.log('API Call');
     try {
-      await axios.post(login, json).then(result => {
+      await axios.post(login, json).then(async result => {
         dispatch({type: LOGIN_SUCCESS, payload: result.data});
-        AsyncStorage.setItem('isLogin', JSON.stringify(true));
-        // AsyncStorage.setItem('USER_DATA', result);
-        AsyncStorage.setItem('USER_jwtToken', result.data.data.jwtToken);
-        // console.log(result.data, 'Login-----------');
+        await AsyncStorage.setItem('isLogin', JSON.stringify(true));
+        await AsyncStorage.setItem(
+          'USER_jwtToken',
+          result.data.data.jwtToken.toString(),
+        );
       });
     } catch (error) {
       dispatch({type: LOGIN_FAUILER, payload: error});
@@ -85,11 +87,10 @@ export const Login_User = data => async dispatch => {
 
 export const setLogout = data => async dispatch => {
   try {
-    await AsyncStorage.removeItem('isLogin', () => {
-      dispatch({type: LOGOUT_Status});
-      AsyncStorage.removeItem('USER_jwtToken');
-      dispatch(restoreStatus());
-    });
+    await AsyncStorage.clear();
+    dispatch({type: LOGOUT_Status});
+    dispatch({type: PRODUCT_DATA_REMOVE});
+    dispatch(restoreStatus());
   } catch (error) {
     console.log(error);
   }

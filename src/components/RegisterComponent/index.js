@@ -16,7 +16,7 @@ import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
 import {LOGIN, OTPVERIFY} from '../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
-import {Register_User} from '../../redux/Actions';
+import {Register_User} from '../../redux/action/Actions';
 
 const RegisterComponent = () => {
   const dispatch = useDispatch();
