@@ -29,8 +29,7 @@ export default styles = StyleSheet.create({
     marginTop: 10,
   },
   iconContainer: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    // backgroundColor: like ? 'rgba(245,42,42,0.2)' : 'rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(245,42,42,0.2)',
     width: 35,
     height: 35,
     justifyContent: 'center',

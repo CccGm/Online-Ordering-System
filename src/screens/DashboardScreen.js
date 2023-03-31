@@ -8,7 +8,7 @@ import {Product_Data, set_fcmToken} from '../redux/action/DashBoardAction';
 
 const DashboardScreen = () => {
   const dispatch = useDispatch();
-  const productData = useSelector(state => state.ProductDataReducer);
+  const productData = useSelector(state => state.GetProductReducer);
 
   console.log(productData.loading);
 

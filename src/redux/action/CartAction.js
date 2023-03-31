@@ -10,7 +10,8 @@ import {
   CART_REMOVE_DATA_FAUILER,
   CART_REMOVE_DATA_LOADING,
   CART_REMOVE_DATA_SUCCESS,
-  Remove_Data_Add,
+  CART_REMOVE_DATA_REMOVE,
+  CART_ADD_DATA_REMOVE,
 } from '../../constants/actionTypes';
 import axios from '../../helpers/axiosIntersepter';
 import {
@@ -30,10 +31,11 @@ export const Cart_Data_Get = data => async dispatch => {
         },
       })
       .then(response => {
-        dispatch({type: CART_DATA_SUCCESS, payload: response});
+        console.log(response.data, 'Hiii ---------------');
+        dispatch({type: CART_DATA_SUCCESS, payload: response.data});
       });
   } catch (error) {
-    Alert.alert('Error', 'data not get ');
+    Alert.alert('Error', 'cart data not get ');
     dispatch({type: CART_DATA_FAUILER, payload: error});
   }
 };
@@ -58,7 +60,7 @@ export const Cart_Data_Add = data => async dispatch => {
         dispatch({type: CART_ADD_DATA_SUCCESS, payload: response});
       });
   } catch (error) {
-    Alert.alert('Error', 'data not get ');
+    Alert.alert('Error', 'cart data not add ');
     dispatch({type: CART_ADD_DATA_FAUILER, payload: error});
   }
 };
@@ -68,20 +70,28 @@ export const Cart_Data_Remove = data => async dispatch => {
   try {
     const token = await AsyncStorage.getItem('USER_jwtToken');
     await axios
-      .get(remove_Product_In_Cart, {
-        headers: {
-          Authorization: token,
+      .post(
+        remove_Product_In_Cart,
+        {cartItemId: data},
+        {
+          headers: {
+            Authorization: token,
+          },
         },
-      })
+      )
       .then(response => {
         dispatch({type: CART_REMOVE_DATA_SUCCESS, payload: response});
       });
   } catch (error) {
-    Alert.alert('Error', 'Not add In Cart ');
+    Alert.alert('Error', 'product not remove');
     dispatch({type: CART_REMOVE_DATA_FAUILER, payload: error});
   }
 };
 
 export const Remove_Data_In_Add = data => dispatch => {
-  dispatch({type: Remove_Data_Add});
+  dispatch({type: CART_ADD_DATA_REMOVE});
+};
+
+export const Remove_Data_In_Remove = data => dispatch => {
+  dispatch({type: CART_REMOVE_DATA_REMOVE});
 };

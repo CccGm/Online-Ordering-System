@@ -1,29 +1,29 @@
 import {
-  CART_INCREASE_DATA_FAUILER,
-  CART_INCREASE_DATA_LOADING,
-  CART_INCREASE_DATA_SUCCESS,
+  FAVORITE_PRODUCT_GET_FAUILER,
+  FAVORITE_PRODUCT_GET_LOADING,
+  FAVORITE_PRODUCT_GET_SUCCESS,
 } from '../../../constants/actionTypes';
 
 const initialState = {
-  data: {},
+  data: [],
   error: null,
   loading: false,
 };
 
-const IncreaseProductReducer = (state = initialState, {type, payload}) => {
+const GetFavoriteReducer = (state = initialState, {type, payload}) => {
   switch (type) {
-    case CART_INCREASE_DATA_LOADING:
+    case FAVORITE_PRODUCT_GET_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case CART_INCREASE_DATA_SUCCESS:
+    case FAVORITE_PRODUCT_GET_SUCCESS:
       return {
         ...state,
-        data: payload,
+        data: payload.data ? payload.data : [],
         loading: false,
       };
-    case CART_INCREASE_DATA_FAUILER:
+    case FAVORITE_PRODUCT_GET_FAUILER:
       return {
         ...state,
         error: payload,
@@ -33,4 +33,4 @@ const IncreaseProductReducer = (state = initialState, {type, payload}) => {
       return state;
   }
 };
-export default IncreaseProductReducer;
+export default GetFavoriteReducer;

@@ -21,7 +21,7 @@ export const Product_Data = data => async dispatch => {
         dispatch({type: PRODUCT_DATA_SUCCESS, payload: response.data.data});
       });
   } catch (error) {
-    Alert.alert('Error', 'data not get ');
+    Alert.alert('Error', 'home data not get ');
     dispatch({type: PRODUCT_DATA_FAUILER, payload: error});
   }
 };

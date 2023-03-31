@@ -5,10 +5,13 @@ import DashboardScreen from '../screens/DashboardScreen';
 import CartScreen from '../screens/CartScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const cartData = useSelector(state => state.GetCartReducer);
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -39,7 +42,11 @@ const TabNavigator = () => {
         labelStyle: {fontSize: 20},
       })}>
       <Tab.Screen name={DASHBOARD} component={DashboardScreen} />
-      <Tab.Screen name={CART} component={CartScreen} />
+      <Tab.Screen
+        name={CART}
+        component={CartScreen}
+        options={{tabBarBadge: cartData.data.length}}
+      />
       <Tab.Screen name={PROFILE} component={ProfileScreen} />
     </Tab.Navigator>
   );

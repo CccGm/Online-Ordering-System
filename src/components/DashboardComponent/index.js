@@ -10,9 +10,8 @@ import {CART} from '../../constants/routeName';
 import {useSelector} from 'react-redux';
 
 const DashboardComponent = () => {
-  const productData = useSelector(state => state.ProductDataReducer);
-
-  console.log(productData.data, 'products ----------');
+  const productData = useSelector(state => state.GetProductReducer);
+  const cartData = useSelector(state => state.GetCartReducer);
 
   const [search, setSearch] = useState('');
   const [filterData, setFilterData] = useState([]);
@@ -49,9 +48,35 @@ const DashboardComponent = () => {
           </Text>
         </View>
         <TouchableOpacity
-          style={{marginTop: 20}}
+          style={{
+            // marginTop: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onPress={() => navigate(CART)}>
-          <Icon name="shopping-cart" size={30} color={'#00000099'} />
+          <Icon name="shopping-cart" size={28} color={'#000000'} />
+          <View
+            style={{
+              position: 'absolute',
+              width: 55,
+              height: 55,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#00ff0035',
+              borderRadius: 30,
+            }}>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 25,
+                fontWeight: 'bold',
+                textAlign: 'center',
+                marginLeft: 5,
+                marginBottom: 3,
+              }}>
+              {cartData.data.length}
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
       <View style={{width: '90%', marginLeft: 20}}>

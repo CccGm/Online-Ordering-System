@@ -1,44 +1,43 @@
 import {
-  CART_ADD_DATA_FAUILER,
-  CART_ADD_DATA_LOADING,
-  CART_ADD_DATA_SUCCESS,
-  Remove_Data_Add,
-} from '../../../constants/actionTypes';
+  PRODUCT_DATA_FAUILER,
+  PRODUCT_DATA_LOADING,
+  PRODUCT_DATA_SUCCESS,
+  PRODUCT_DATA_REMOVE,
+} from '../../constants/actionTypes';
 
 const initialState = {
-  data: {},
+  data: [],
   error: null,
   loading: false,
 };
 
-const AddProductReducer = (state = initialState, {type, payload}) => {
+const GetProductReducer = (state = initialState, {type, payload}) => {
   switch (type) {
-    case CART_ADD_DATA_LOADING:
+    case PRODUCT_DATA_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case CART_ADD_DATA_SUCCESS:
+    case PRODUCT_DATA_SUCCESS:
       return {
         ...state,
         data: payload,
         loading: false,
       };
-    case CART_ADD_DATA_FAUILER:
+    case PRODUCT_DATA_FAUILER:
       return {
         ...state,
         error: payload,
         loading: false,
       };
-    case Remove_Data_Add:
+    case PRODUCT_DATA_REMOVE:
       return {
         ...state,
         data: {},
-        error: null,
         loading: false,
       };
     default:
       return state;
   }
 };
-export default AddProductReducer;
+export default GetProductReducer;

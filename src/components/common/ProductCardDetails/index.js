@@ -5,6 +5,8 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Alert,
+  ToastAndroid,
 } from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,28 +16,36 @@ import {CART} from '../../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   Cart_Data_Add,
+  Cart_Data_Get,
   Remove_Data_In_Add,
 } from '../../../redux/action/CartAction';
-import {CART_ADD_DATA_LOADING} from '../../../constants/actionTypes';
 
 const ProductCardDetails = props => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const data = useSelector(state => state.AddProductReducer);
+  const response = useSelector(state => state.AddProductReducer);
   const iteData = props.route.params.data;
 
   useEffect(() => {
-    // if (data.loading == false) {
-    //   console.log(data.data.data, 'clg data-----------');
-    //   if (data.data.data.status == 1) {
-    //     navigation.navigate(CART);
-    //     dispatch(Remove_Data_In_Add());
-    //   }
-    // }
-  }, []);
+    if (response.loading == false) {
+      if (response.status == 1) {
+        navigation.navigate(CART);
+        dispatch(Remove_Data_In_Add());
+        dispatch(Cart_Data_Get());
+        ToastAndroid.show(
+          'Data Add Into Cart',
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
+      } else if (response.status == 0) {
+        Alert.alert('Alert', 'Data not Add in to Cart');
+        dispatch(Remove_Data_In_Add());
+      }
+    }
+  }, [response]);
 
   return (
-    <SafeAreaView style={{flex: 1, elevation: 8, shadowColor: '#370247'}}>
+    <SafeAreaView style={{flex: 1, elevation: 8, shadowColor: '#5d296b'}}>
       <View style={styles.iconContainer}>
         <Icon
           name={'arrow-back'}

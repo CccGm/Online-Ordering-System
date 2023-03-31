@@ -8,6 +8,7 @@ const initialState = {
   data: [],
   error: null,
   loading: false,
+  total: 0,
 };
 
 const GetCartProductReducer = (state = initialState, {type, payload}) => {
@@ -20,8 +21,9 @@ const GetCartProductReducer = (state = initialState, {type, payload}) => {
     case CART_DATA_SUCCESS:
       return {
         ...state,
-        data: payload,
+        data: payload.data ? payload.data : [],
         loading: false,
+        total: payload.cartTotal ? payload.cartTotal : 0,
       };
     case CART_DATA_FAUILER:
       return {
