@@ -13,6 +13,8 @@ import {
   LOGIN_STATE_RESTORE_REQUEST,
   LOGIN_STATE_RESTORE,
   PRODUCT_DATA_REMOVE,
+  GET_USERDATA,
+  REMOVE_USERDATA,
 } from '../../constants/actionTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from '../../helpers/axiosIntersepter';
@@ -72,10 +74,27 @@ export const Login_User = data => async dispatch => {
     try {
       await axios.post(login, json).then(async result => {
         dispatch({type: LOGIN_SUCCESS, payload: result.data});
+        dispatch({type: GET_USERDATA});
         await AsyncStorage.setItem('isLogin', JSON.stringify(true));
         await AsyncStorage.setItem(
           'USER_jwtToken',
           result.data.data.jwtToken.toString(),
+        );
+        await AsyncStorage.setItem(
+          'User_Name',
+          result.data.data.name.toString(),
+        );
+        await AsyncStorage.setItem(
+          'User_Mo.No',
+          result.data.data.mobileNo.toString(),
+        );
+        await AsyncStorage.setItem(
+          'User_Email',
+          result.data.data.emailId.toString(),
+        );
+        await AsyncStorage.setItem(
+          'User_Pass',
+          result.data.data.password.toString(),
         );
       });
     } catch (error) {
@@ -90,6 +109,7 @@ export const setLogout = data => async dispatch => {
     await AsyncStorage.clear();
     dispatch({type: LOGOUT_Status});
     dispatch({type: PRODUCT_DATA_REMOVE});
+    dispatch({type: REMOVE_USERDATA});
     dispatch(restoreStatus());
   } catch (error) {
     console.log(error);
@@ -100,12 +120,11 @@ export const restoreStatus = () => async dispatch => {
   let loginStatus;
   try {
     dispatch({type: LOGIN_STATE_RESTORE_REQUEST});
-    loginStatus = await AsyncStorage.getItem('isLogin')
-      .then(val => {
-        if (val === 'true') return true;
-        else return false;
-      })
-      .catch(err => console.log(err));
+    loginStatus = await AsyncStorage.getItem('isLogin').then(val => {
+      if (val === 'true') return true;
+      else return false;
+    });
+
     dispatch({type: LOGIN_STATE_RESTORE, payload: loginStatus});
   } catch (error) {
     console.log('status restoration failed: ', error);

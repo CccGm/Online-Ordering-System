@@ -7,9 +7,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 
-const Tab = createBottomTabNavigator();
-
 const TabNavigator = () => {
+  const Tab = createBottomTabNavigator();
   const cartData = useSelector(state => state.GetCartReducer);
 
   return (

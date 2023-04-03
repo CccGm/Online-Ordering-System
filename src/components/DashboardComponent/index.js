@@ -12,11 +12,19 @@ import {useSelector} from 'react-redux';
 const DashboardComponent = () => {
   const productData = useSelector(state => state.GetProductReducer);
   const cartData = useSelector(state => state.GetCartReducer);
-
+  const UserData = useSelector(state => state.UserDataReducer);
   const [search, setSearch] = useState('');
   const [filterData, setFilterData] = useState([]);
   const [masterData, setMasterData] = useState(productData.data);
+  const [userData, setUserData] = useState({Name: null});
 
+  useState(() => {
+    UserData.then(aa => {
+      setUserData({...userData, Name: aa.Name});
+    });
+  }, []);
+
+  console.log(userData.Name);
   const {navigate} = useNavigation();
 
   const seatchFilterFunction = text => {
@@ -44,7 +52,7 @@ const DashboardComponent = () => {
         <View>
           <Text style={{fontSize: 22, fontWeight: 'bold'}}>Welcome</Text>
           <Text style={{fontSize: 30, fontWeight: 'bold', color: '#0d9b5bcc'}}>
-            Anush Virani {'\u2728'}
+            {userData.Name} {'\u2728'}
           </Text>
         </View>
         <TouchableOpacity

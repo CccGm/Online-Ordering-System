@@ -32,6 +32,7 @@ export const Cart_Data_Get = data => async dispatch => {
       })
       .then(response => {
         console.log(response.data, 'Hiii ---------------');
+
         dispatch({type: CART_DATA_SUCCESS, payload: response.data});
       });
   } catch (error) {

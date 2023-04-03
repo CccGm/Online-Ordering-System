@@ -57,8 +57,6 @@ const RegisterComponent = () => {
       }
       if ((form.Name && form.Email && form.Mo_No && form.Password) != '') {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.Email)) {
-          console.log('dsdjsjsdbsjdbs', form);
-
           dispatch(Register_User(form));
         } else {
           Alert.alert('Alert', 'email not valid');

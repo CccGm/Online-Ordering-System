@@ -10,10 +10,6 @@ const CartScreen = () => {
   const dispatch = useDispatch();
   const cartData = useSelector(state => state.GetCartReducer);
 
-  useEffect(() => {
-    dispatch(Cart_Data_Get());
-  }, []);
-
   return (
     <View style={{backgroundColor: '#fff', flex: 1}}>
       {cartData.loading != false ? (

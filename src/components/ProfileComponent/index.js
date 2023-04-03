@@ -1,16 +1,34 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import {Avatar, Caption, Title, TouchableRipple} from 'react-native-paper';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import {LIKE} from '../../constants/routeName';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setLogout} from '../../redux/action/Actions';
 
 const ProfileComponent = () => {
   const {navigate} = useNavigation();
+  const UserData = useSelector(state => state.UserDataReducer);
   const dispatch = useDispatch();
+
+  const [userData, setUserData] = useState({
+    Name: null,
+    Email: null,
+    Mo_No: null,
+  });
+
+  useState(() => {
+    UserData.then(aa => {
+      setUserData({
+        ...userData,
+        Name: aa.Name,
+        Email: aa.Email,
+        Mo_No: aa.Mo_No,
+      });
+    });
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,9 +40,9 @@ const ProfileComponent = () => {
           />
           <View style={{marginLeft: 20}}>
             <Title style={[styles.title, {marginTop: 15, marginBottom: 5}]}>
-              Ashish noe
+              {userData.Name}
             </Title>
-            <Caption style={styles.caption}>@ashish</Caption>
+            <Caption style={styles.caption}>@ {userData.Name}</Caption>
           </View>
         </View>
       </View>
@@ -37,14 +55,18 @@ const ProfileComponent = () => {
         </View>
         <View style={styles.row}>
           <Icon name="phone" size={20} color={'#777777'} />
-          <Text style={{color: '#777777', marginLeft: 20}}>+91 1234567899</Text>
+          <Text style={{color: '#777777', marginLeft: 20}}>
+            {userData.Mo_No}
+          </Text>
         </View>
         <View style={styles.row}>
           <Icon name="email" size={20} color={'#777777'} />
-          <Text style={{color: '#777777', marginLeft: 20}}>abc@gmail.com </Text>
+          <Text style={{color: '#777777', marginLeft: 20}}>
+            {userData.Email}
+          </Text>
         </View>
       </View>
-      <View style={styles.infoBoxWrapper}>
+      {/* <View style={styles.infoBoxWrapper}>
         <View
           style={[
             styles.infoBox,
@@ -57,9 +79,9 @@ const ProfileComponent = () => {
           <Title>12</Title>
           <Caption>Orderd</Caption>
         </View>
-      </View>
+      </View> */}
 
-      <View style={styles.menuWrapper}>
+      <View>
         <TouchableRipple
           onPress={() => {
             navigate(LIKE);

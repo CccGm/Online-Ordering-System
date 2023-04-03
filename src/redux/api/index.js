@@ -5,7 +5,7 @@ export const verify_Register_Otp = 'user/verifyOtpOnRegister';
 export const forgot_Password = 'user/forgotPassword';
 export const verify_ForgotPassword_Otp = 'user/verifyOtpOnForgotPassword';
 export const resend_Otp = 'user/resendOtp';
-
+export const change_Password = '/user/changePassword';
 // //
 
 export const FcmToken = 'user/setFcmToken';
@@ -20,3 +20,6 @@ export const increase_Product = 'cart/increaseProductQuantity';
 export const get_All_Favorite_Product = '/watchList/getWatchList';
 export const add_Favorite_Product = '/watchList/addToWatchList';
 export const remove_Favorite_Product = '/watchList/removeFromWatchList';
+
+export const get_All_History_Data = '/order/getOrderHistory';
+export const place_Order = '/order/placeOrder';

@@ -6,6 +6,7 @@ import {
   CHANGEPASSWORD,
   FORGOTPASSWORD,
   LOGIN,
+  OTPFORGOTPASSWORD,
   OTPVERIFY,
   REGISTER,
   SPLASH,
@@ -14,6 +15,7 @@ import SplashScreen from '../screens/SplashScreen';
 import ForgotPassword from '../components/ForgotPassword';
 import OTPVerify from '../components/OTPVerify';
 import ChangePassword from '../components/ChangePassword';
+import OTPForgotPassword from '../components/OTPForgotPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +26,9 @@ const AuthNavigator = () => {
       <Stack.Screen name={LOGIN} component={LoginScreen} />
       <Stack.Screen name={REGISTER} component={RegisterScreen} />
       <Stack.Screen name={FORGOTPASSWORD} component={ForgotPassword} />
+      <Stack.Screen name={OTPFORGOTPASSWORD} component={OTPForgotPassword} />
       <Stack.Screen name={OTPVERIFY} component={OTPVerify} />
+      <Stack.Screen name={CHANGEPASSWORD} component={ChangePassword} />
     </Stack.Navigator>
   );
 };

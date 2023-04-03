@@ -36,6 +36,7 @@ const RemoveFavoriteReducer = (state = initialState, {type, payload}) => {
     case REMOVE_FAVORITE_PRODUCT_REMOVE:
       return {
         ...state,
+        data: {},
         error: null,
         status: null,
         loading: false,

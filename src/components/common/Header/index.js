@@ -3,7 +3,7 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 const Header = ({title, hideBackBtn, primary, rightOptionMenu}) => {
   const navigation = useNavigation();
   const route = useRoute();
@@ -31,7 +31,7 @@ const Header = ({title, hideBackBtn, primary, rightOptionMenu}) => {
             navigation.dispatch(StackActions.pop(1));
           }}
           style={styles.backBtn}>
-          {/* <Image source={getBackArrow()} /> */}
+          <Icon name={'arrow-back-outline'} size={25} color={'#000000bb'} />
         </TouchableOpacity>
       )}
 

@@ -11,21 +11,15 @@ const LikeScreen = () => {
   const dispatch = useDispatch();
   const likeData = useSelector(state => state.GetFavoriteReducer);
 
-  console.log(likeData, 'like data screen --------------');
-
-  useEffect(() => {
-    dispatch(Favorite_Data_Get());
-  }, []);
-
   return (
     <View style={{backgroundColor: '#fff', flex: 1}}>
+      <Header title={'Like Product'} hideBackBtn={false} />
       {likeData.loading != false ? (
         <ActivityLoader />
       ) : likeData.data.length == 0 ? (
         <NoDataFound />
       ) : (
         <View style={{flex: 1}}>
-          <Header title={'Like Product'} hideBackBtn={false} />
           <LikeComponent />
         </View>
       )}

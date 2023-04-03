@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
-import {Image, Text, View, TouchableOpacity, ToastAndroid} from 'react-native';
+import {
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  ToastAndroid,
+  Alert,
+} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -16,23 +23,38 @@ const ProductCard = props => {
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
   const response = useSelector(state => state.AddFavoriteReducer);
+  const favoriteData = useSelector(state => state.GetFavoriteReducer);
+
+  var abc = favoriteData.data.map(index => {
+    if (index.productDetails._id == props.card._id) {
+      return index.productDetails._id;
+    }
+  });
+
+  var like;
+  abc.map(index => {
+    if (index != undefined) {
+      like = index;
+    }
+  });
 
   useEffect(() => {
     if (response.loading == false) {
       if (response.status == 1) {
         dispatch(Remove_Favorite_Data_In_Add());
-        dispatch(Favorite_Data_Get());
-        ToastAndroid.show(
-          'Data Add Into Cart',
-          ToastAndroid.BOTTOM,
-          ToastAndroid.SHORT,
-        );
+        dispatch(Favorite_Data_Get()).then(() => {
+          ToastAndroid.show(
+            'Data Add Into Favorite',
+            ToastAndroid.BOTTOM,
+            ToastAndroid.SHORT,
+          );
+        });
       } else if (response.status == 0) {
-        Alert.alert('Alert', 'Data not Add in to Cart');
+        Alert.alert('Alert', 'Data not Add in to Favorite');
         dispatch(Remove_Favorite_Data_In_Add());
       }
     }
-  }, [response]);
+  }, [response.loading == false]);
 
   return (
     <TouchableOpacity
@@ -40,15 +62,41 @@ const ProductCard = props => {
       onPress={() => {
         navigate(PRODUCTDETAILS, {data: props.card});
       }}>
-      <TouchableOpacity
-        style={{alignItems: 'flex-end'}}
-        onPress={() => {
-          dispatch(Favorite_Data_Add(props.card._id));
-        }}>
-        <View style={styles.iconContainer}>
-          <Icon name={'heart'} size={18} color={'black'} />
-        </View>
-      </TouchableOpacity>
+      {like == props.card._id ? (
+        <TouchableOpacity
+          style={{alignItems: 'flex-end'}}
+          onPress={() => {
+            Alert.alert('Warn', 'Product Already in Wish List');
+          }}>
+          <View
+            style={[
+              styles.iconContainer,
+              {
+                backgroundColor: 'rgba(245,42,42,0.2)',
+              },
+            ]}>
+            <Icon name={'heart'} size={18} color={'red'} />
+          </View>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          style={{alignItems: 'flex-end'}}
+          onPress={() => {
+            dispatch(Favorite_Data_Add(props.card._id));
+            dispatch(Favorite_Data_Get());
+          }}>
+          <View
+            style={[
+              styles.iconContainer,
+              {
+                backgroundColor: 'rgba(0,0,0,0.2)',
+              },
+            ]}>
+            <Icon name={'heart'} size={18} color={'black'} />
+          </View>
+        </TouchableOpacity>
+      )}
+
       <View style={styles.imageContainer}>
         <Image
           source={{uri: props.card.imageUrl}}

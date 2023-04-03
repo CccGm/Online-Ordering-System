@@ -19,7 +19,7 @@ const LikeProduct = props => {
         dispatch(Favorite_Data_Get());
         dispatch(Remove_Favorite_Data_In_Remove());
         ToastAndroid.show(
-          'Data Remove Into Cart',
+          'Data Remove Into Favorite',
           ToastAndroid.BOTTOM,
           ToastAndroid.SHORT,
         );
@@ -28,7 +28,7 @@ const LikeProduct = props => {
         dispatch(Remove_Favorite_Data_In_Remove());
       }
     }
-  }, [response]);
+  }, [response.loading == false]);
 
   return (
     <View style={styles.container}>

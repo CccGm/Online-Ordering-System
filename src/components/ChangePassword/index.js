@@ -12,9 +12,12 @@ import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {Change_Password} from '../../redux/action/ForgotPassword';
 
 const ChangePassword = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     check_textInputChange: false,
     secureTextEntry: true,
@@ -29,15 +32,20 @@ const ChangePassword = () => {
     if (Lform != null) {
       if (!Lform.OldPassword || !Lform.NewPassword) {
         if (!Lform.OldPassword) {
-          Alert.alert('Warning', 'Please Enter Old Password');
-        } else {
           Alert.alert('Warning', 'Please Enter New Password');
+        } else {
+          Alert.alert('Warning', 'Please Enter conform Password');
         }
       } else {
         if (Lform.OldPassword == Lform.NewPassword) {
-          Alert.alert('Alert', 'New Password Not Same as Old Password !');
+          dispatch(
+            Change_Password({
+              newPass: Lform.OldPassword,
+              confirmPass: Lform.NewPassword,
+            }),
+          );
         } else {
-          Alert.alert('Sucess', 'Password Updated');
+          Alert.alert('Alert', 'Both password not same !');
         }
       }
     } else {
@@ -62,17 +70,19 @@ const ChangePassword = () => {
         <View style={styles.action}>
           <Feather name={'lock'} color="#05375a" size={20} />
           <TextInput
-            placeholder="Your Old Password"
+            placeholder="Your New Password"
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={val => textInputChange({name: 'OldPassword', val})}
           />
         </View>
-        <Text style={[styles.text_footer, {marginTop: 35}]}>New Password</Text>
+        <Text style={[styles.text_footer, {marginTop: 35}]}>
+          Conform Password
+        </Text>
         <View style={styles.action}>
           <Feather name={'lock'} color="#05375a" size={20} />
           <TextInput
-            placeholder="Your New Password"
+            placeholder="Conform Password"
             secureTextEntry={data.secureTextEntry ? true : false}
             style={styles.textInput}
             autoCapitalize="none"

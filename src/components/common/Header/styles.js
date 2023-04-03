@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   backBtn: {
-    padding: 20,
+    padding: 10,
   },
   title: {
     fontSize: 16,

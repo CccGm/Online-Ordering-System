@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StatusBar,
   Text,
@@ -12,16 +12,32 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
-import {OTPVERIFY} from '../../constants/routeName';
+import {OTPFORGOTPASSWORD, OTPVERIFY} from '../../constants/routeName';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  Forgot_Password,
+  Remove_Password_data,
+} from '../../redux/action/ForgotPassword';
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
+  const passwordData = useSelector(state => state.ForgotPasswordReducer);
+  const dispatch = useDispatch();
+  console.log(passwordData.data.status, 'forgot ----------');
   const [email, setEmail] = useState(null);
+
+  useEffect(() => {
+    if (passwordData.loading == false) {
+      if (passwordData.data.status == 200) {
+        navigation.navigate(OTPFORGOTPASSWORD);
+        dispatch(Remove_Password_data());
+      }
+    }
+  }, [passwordData]);
 
   const Submit_Data = () => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      Alert.alert('Success', 'You Have Login ');
-      navigation.navigate(OTPVERIFY);
+      dispatch(Forgot_Password(email));
     } else {
       Alert.alert('Warning', 'Enter Valid Email');
     }
