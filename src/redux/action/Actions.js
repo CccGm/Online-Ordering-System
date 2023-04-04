@@ -19,6 +19,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from '../../helpers/axiosIntersepter';
 import {login, register, verify_Register_Otp} from '../api';
+import {resend_Otp} from '../api';
 
 export const Register_User = data => async dispatch => {
   if (data) {
@@ -58,6 +59,25 @@ export const Register_Otp = data => async dispatch => {
     } catch (error) {
       Alert.alert('Invalid OTP');
       dispatch({type: OTP_FAUILER, payload: error});
+    }
+  }
+};
+
+export const Resend_Otp = data => async dispatch => {
+  if (data) {
+    dispatch({type: OTP_LOADING});
+    console.log('API Call');
+    try {
+      await axios.post(resend_Otp, data).then(result => {
+        ToastAndroid.show(
+          'OTP send in Your Email',
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
+        console.log(result.data, 'resend otp');
+      });
+    } catch (error) {
+      Alert.alert('OTP not send');
     }
   }
 };

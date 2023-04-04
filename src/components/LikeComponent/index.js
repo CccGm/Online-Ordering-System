@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import LikeProduct from '../common/LikeProduct';
 import {useSelector} from 'react-redux';
 

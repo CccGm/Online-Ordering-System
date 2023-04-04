@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
 import {Avatar, Caption, Title, TouchableRipple} from 'react-native-paper';
 import styles from './styles';
@@ -7,6 +7,13 @@ import {useNavigation} from '@react-navigation/native';
 import {LIKE} from '../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLogout} from '../../redux/action/Actions';
+import {
+  TEXT_LOG_OUT,
+  TEXT_SETTING,
+  TEXT_SHARE_YOUR_FRIEND,
+  TEXT_SUPPORT,
+  TEXT_YOUR_FAVORITE_ITEM,
+} from '../../constants/strings';
 
 const ProfileComponent = () => {
   const {navigate} = useNavigation();
@@ -88,19 +95,19 @@ const ProfileComponent = () => {
           }}>
           <View style={styles.menuItem}>
             <Icon name={'heart-outline'} color={'#FF6347'} size={25} />
-            <Text style={styles.menuItemText}>Your Favorite</Text>
+            <Text style={styles.menuItemText}>{TEXT_YOUR_FAVORITE_ITEM}</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
             <Icon name={'share-outline'} color={'#FF6347'} size={25} />
-            <Text style={styles.menuItemText}>Sare Your Friend</Text>
+            <Text style={styles.menuItemText}>{TEXT_SHARE_YOUR_FRIEND}</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
             <Icon name={'account-check-outline'} color={'#FF6347'} size={25} />
-            <Text style={styles.menuItemText}>Support</Text>
+            <Text style={styles.menuItemText}>{TEXT_SUPPORT}</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>
@@ -110,7 +117,7 @@ const ProfileComponent = () => {
               color={'#FF6347'}
               size={25}
             />
-            <Text style={styles.menuItemText}>Setting</Text>
+            <Text style={styles.menuItemText}>{TEXT_SETTING}</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple
@@ -119,7 +126,7 @@ const ProfileComponent = () => {
           }}>
           <View style={styles.menuItem}>
             <Icon name={'logout'} color={'#FF6347'} size={25} />
-            <Text style={styles.menuItemText}>Log Out</Text>
+            <Text style={styles.menuItemText}>{TEXT_LOG_OUT}</Text>
           </View>
         </TouchableRipple>
       </View>

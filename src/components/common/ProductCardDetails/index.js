@@ -24,6 +24,7 @@ const ProductCardDetails = props => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const response = useSelector(state => state.AddProductReducer);
+  const cardData = useSelector(state => state.GetCartReducer);
   const iteData = props.route.params.data;
 
   useEffect(() => {
@@ -44,6 +45,19 @@ const ProductCardDetails = props => {
     }
   }, [response]);
 
+  var abc = cardData.data.map(index => {
+    if (index.productDetails._id == iteData._id) {
+      return index.productDetails._id;
+    }
+  });
+
+  var InCart;
+  abc.map(index => {
+    if (index != undefined) {
+      InCart = index;
+    }
+  });
+
   return (
     <SafeAreaView style={{flex: 1, elevation: 8, shadowColor: '#5d296b'}}>
       <View style={styles.iconContainer}>
@@ -53,12 +67,19 @@ const ProductCardDetails = props => {
           color={'#000'}
           onPress={() => navigation.goBack()}
         />
-        <Icon
-          name={'shopping-cart'}
-          size={28}
-          color={'#000'}
-          onPress={() => navigation.navigate(CART)}
-        />
+        <TouchableOpacity
+          style={styles.iconTouch}
+          onPress={() => navigation.navigate(CART)}>
+          <Icon
+            name="shopping-cart"
+            size={28}
+            color={'#000'}
+            style={{position: 'absolute'}}
+          />
+          <View style={styles.iconView}>
+            <Text style={styles.iconText}>{cardData.data.length}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.imageContainer}>
         <Image
@@ -89,14 +110,21 @@ const ProductCardDetails = props => {
             }}>
             {iteData.description}
           </Text>
-
-          <TouchableOpacity
-            style={styles.brnContainer}
-            onPress={() => {
-              dispatch(Cart_Data_Add(iteData._id));
-            }}>
-            <Text style={styles.price}>Add To Cart</Text>
-          </TouchableOpacity>
+          {InCart == iteData._id ? (
+            <TouchableOpacity
+              style={[styles.brnContainer, {backgroundColor: '#0d9b5b90'}]}
+              disabled={true}>
+              <Text style={styles.price}>Product Available In Cart</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.brnContainer}
+              onPress={() => {
+                dispatch(Cart_Data_Add(iteData._id));
+              }}>
+              <Text style={styles.price}>Add To Cart</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

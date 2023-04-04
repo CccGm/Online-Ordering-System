@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import styles from './styles';
+import {TEXT_ORDER_DATE, TEXT_ORDER_PRICE} from '../../../constants/strings';
 
 const HistoryCard = props => {
   return (
@@ -26,11 +27,11 @@ const HistoryCard = props => {
         </Text>
         <Text
           style={[styles.text, {color: 'grey', fontSize: 18, marginTop: 5}]}>
-          Order Date : 19 - 5 - 23
+          {TEXT_ORDER_DATE} : 19 - 5 - 23
         </Text>
         <Text
           style={[styles.text, {color: 'grey', fontSize: 18, marginTop: 5}]}>
-          Order Price : {'\u20A8'} : {props.item.price}
+          {TEXT_ORDER_PRICE} : {'\u20A8'} : {props.item.price}
         </Text>
       </View>
     </View>

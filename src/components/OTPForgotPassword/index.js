@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Animated,
-  Button,
   Image,
   SafeAreaView,
   Text,
@@ -24,14 +23,23 @@ import styles, {
   DEFAULT_CELL_BG_COLOR,
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
-import {CHANGEPASSWORD, LOGIN} from '../../constants/routeName';
+import {LOGIN} from '../../constants/routeName';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
-import {Register_Otp} from '../../redux/action/Actions';
+import {Resend_Otp} from '../../redux/action/Actions';
 import {
   Forgot_Password_OTP,
   Remove_Password_Otp_data,
 } from '../../redux/action/ForgotPassword';
+import {
+  TEXT_ALERT,
+  TEXT_CODE_NOT_RECIVED,
+  TEXT_PLEASE_INSERT_ALL_VALUE,
+  TEXT_RESEND_OTP,
+  TEXT_TIME_REMAINING,
+  TEXT_VERIFICATION,
+  TEXT_VERIFY,
+} from '../../constants/strings';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -94,13 +102,11 @@ const OTPForgotPassword = () => {
   useEffect(() => {
     if (otpData.loading == false) {
       if (otpData.data.status == 1) {
-        navigation.navigate(CHANGEPASSWORD);
+        navigation.navigate(LOGIN);
         dispatch(Remove_Password_Otp_data());
       }
     }
   }, [otpData]);
-
-  console.log(forgotData.data.data.data._id, 'datatata=-----');
 
   const VerifyOtp = () => {
     if (value.length == 4) {
@@ -109,15 +115,18 @@ const OTPForgotPassword = () => {
         otp: value,
       };
       dispatch(Forgot_Password_OTP(data));
-      // navigation.navigate(LOGIN);
     } else {
-      Alert.alert('Alert', 'Please Insert all value');
+      Alert.alert(TEXT_ALERT, TEXT_PLEASE_INSERT_ALL_VALUE);
     }
   };
 
   const resendOTP = () => {
     setMinutes(1);
     setSeconds(30);
+
+    dispatch(Resend_Otp({userId: forgotData.data.data.data._id})).then(() => {
+      console.log('object');
+    });
   };
 
   const renderCell = ({index, symbol, isFocused}) => {
@@ -146,8 +155,6 @@ const OTPForgotPassword = () => {
       ],
     };
 
-    // Run animation on next event loop tik
-    // Because we need first return new style prop and then animate this value
     setTimeout(() => {
       animateCell({hasValue, index, isFocused});
     }, 0);
@@ -167,7 +174,7 @@ const OTPForgotPassword = () => {
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name={'arrow-back'} size={25} color={'#000000aa'} />
       </TouchableOpacity>
-      <Text style={styles.title}>Verification</Text>
+      <Text style={styles.title}>{TEXT_VERIFICATION}</Text>
       <Image style={styles.icon} source={source} />
       <Text style={styles.subTitle}>
         Please enter the verification code{'\n'}
@@ -188,11 +195,11 @@ const OTPForgotPassword = () => {
       <View style={styles.resendContainer}>
         {seconds > 0 || minutes > 0 ? (
           <Text style={{fontSize: 16}}>
-            Time Remaining : 0{minutes < 10 ? minutes : minutes} :{' '}
+            {TEXT_TIME_REMAINING} : 0{minutes < 10 ? minutes : minutes} :{' '}
             {seconds < 10 ? '0' + seconds : seconds}
           </Text>
         ) : (
-          <Text style={{fontSize: 16}}>Didn't recive code ?</Text>
+          <Text style={{fontSize: 16}}>{TEXT_CODE_NOT_RECIVED}</Text>
         )}
         <TouchableOpacity
           disabled={seconds > 0 || minutes > 0}
@@ -202,7 +209,7 @@ const OTPForgotPassword = () => {
               fontSize: 16,
               color: seconds > 0 || minutes > 0 ? '#cdd2d8' : '#009387',
             }}>
-            Resend Otp
+            {TEXT_RESEND_OTP}
           </Text>
         </TouchableOpacity>
       </View>
@@ -213,7 +220,7 @@ const OTPForgotPassword = () => {
         <LinearGradient
           colors={['#08d4c4', '#01ab9d']}
           style={styles.nextButton}>
-          <Text style={styles.nextButtonText}>Verify</Text>
+          <Text style={styles.nextButtonText}>{TEXT_VERIFY}</Text>
         </LinearGradient>
       </TouchableOpacity>
     </SafeAreaView>

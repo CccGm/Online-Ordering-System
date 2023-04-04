@@ -10,7 +10,7 @@ const Splash = () => {
       <View style={styles.header}>
         <Animatable.Image
           animation="bounceIn"
-          duration={500}
+          duration={1500}
           source={require('../../../assets/images/logo.png')}
           style={styles.logo}
           resizeMode="contain"

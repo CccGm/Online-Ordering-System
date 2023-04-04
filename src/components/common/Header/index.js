@@ -1,6 +1,6 @@
 import {StackActions, useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';

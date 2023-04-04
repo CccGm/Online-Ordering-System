@@ -18,12 +18,18 @@ import {
   Forgot_Password,
   Remove_Password_data,
 } from '../../redux/action/ForgotPassword';
+import {
+  TEXT_ALERT,
+  TEXT_ENTER_EMAIL,
+  TEXT_ENTER_VALIDE_EMAIL,
+  TEXT_GO_BACK,
+  TEXT_SEND_OTP,
+} from '../../constants/strings';
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
   const passwordData = useSelector(state => state.ForgotPasswordReducer);
   const dispatch = useDispatch();
-  console.log(passwordData.data.status, 'forgot ----------');
   const [email, setEmail] = useState(null);
 
   useEffect(() => {
@@ -39,7 +45,7 @@ const ForgotPassword = () => {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       dispatch(Forgot_Password(email));
     } else {
-      Alert.alert('Warning', 'Enter Valid Email');
+      Alert.alert(TEXT_ALERT, TEXT_ENTER_VALIDE_EMAIL);
     }
   };
 
@@ -54,7 +60,7 @@ const ForgotPassword = () => {
         <View style={styles.action}>
           <FontAwesome name={'user-o'} color="#05375a" size={20} />
           <TextInput
-            placeholder="Your Email"
+            placeholder={TEXT_ENTER_EMAIL}
             style={styles.textInput}
             keyboardType="email-address"
             autoCapitalize="none"
@@ -68,7 +74,9 @@ const ForgotPassword = () => {
             <LinearGradient
               colors={['#08d4c4', '#01ab9d']}
               style={styles.signIn}>
-              <Text style={[styles.textSign, {color: '#fff'}]}>Send OTP</Text>
+              <Text style={[styles.textSign, {color: '#fff'}]}>
+                {TEXT_SEND_OTP}
+              </Text>
             </LinearGradient>
           </TouchableOpacity>
           <TouchableOpacity
@@ -77,7 +85,9 @@ const ForgotPassword = () => {
               styles.signIn,
               {borderColor: '#009387', marginTop: 15, borderWidth: 1},
             ]}>
-            <Text style={[styles.textSign, {color: '#009387'}]}>Go Back</Text>
+            <Text style={[styles.textSign, {color: '#009387'}]}>
+              {TEXT_GO_BACK}
+            </Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>

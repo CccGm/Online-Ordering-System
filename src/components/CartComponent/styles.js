@@ -32,4 +32,9 @@ export default styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
   },
+  textTotal: {
+    fontSize: 22,
+    color: '#000000da',
+    fontWeight: 'bold',
+  },
 });

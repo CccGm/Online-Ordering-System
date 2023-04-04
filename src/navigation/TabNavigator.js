@@ -7,8 +7,9 @@ import ProfileScreen from '../screens/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 
+const Tab = createBottomTabNavigator();
+
 const TabNavigator = () => {
-  const Tab = createBottomTabNavigator();
   const cartData = useSelector(state => state.GetCartReducer);
 
   return (
@@ -35,10 +36,7 @@ const TabNavigator = () => {
         },
         headerShown: false,
         activeTintColor: '#de3434',
-        inactiveTintColor: '#555',
-        activeBackgroundColor: '#fff',
-        inactiveBackgrondColor: '#999',
-        labelStyle: {fontSize: 20},
+        tabBarShowLabel: false,
       })}>
       <Tab.Screen name={DASHBOARD} component={DashboardScreen} />
       <Tab.Screen

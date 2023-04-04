@@ -1,13 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import CartComponent from '../components/CartComponent';
 import ActivityLoader from '../components/common/ActivityLoader';
 import NoDataFound from '../components/common/NoDataFound';
-import {Cart_Data_Get} from '../redux/action/CartAction';
 
 const CartScreen = () => {
-  const dispatch = useDispatch();
   const cartData = useSelector(state => state.GetCartReducer);
 
   return (

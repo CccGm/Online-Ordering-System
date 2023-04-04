@@ -13,7 +13,9 @@ import {
 import ChangePassword from '../components/ChangePassword';
 import LikeScreen from '../screens/LikeScreen';
 import HistoryScreen from '../screens/HistoryScreen';
+
 const Stack = createNativeStackNavigator();
+
 const DashboardNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>

@@ -14,6 +14,17 @@ import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {Change_Password} from '../../redux/action/ForgotPassword';
+import {
+  TEXT_BOTH_PASSWORD_NOT_SAME,
+  TEXT_CHANGE_PASSWORD,
+  TEXT_CONFIRM_PASSWORD,
+  TEXT_ENTER_ALL_CREDENCIALS,
+  TEXT_ENTER_CONFROM_PASSWORD,
+  TEXT_ENTER_NEW_PASSWORD,
+  TEXT_GO_BACK,
+  TEXT_NEW_PASSWORD,
+  TEXT_WARNING,
+} from '../../constants/strings';
 
 const ChangePassword = () => {
   const navigation = useNavigation();
@@ -32,9 +43,9 @@ const ChangePassword = () => {
     if (Lform != null) {
       if (!Lform.OldPassword || !Lform.NewPassword) {
         if (!Lform.OldPassword) {
-          Alert.alert('Warning', 'Please Enter New Password');
+          Alert.alert(TEXT_WARNING, TEXT_ENTER_NEW_PASSWORD);
         } else {
-          Alert.alert('Warning', 'Please Enter conform Password');
+          Alert.alert(TEXT_WARNING, TEXT_ENTER_CONFROM_PASSWORD);
         }
       } else {
         if (Lform.OldPassword == Lform.NewPassword) {
@@ -45,11 +56,11 @@ const ChangePassword = () => {
             }),
           );
         } else {
-          Alert.alert('Alert', 'Both password not same !');
+          Alert.alert(TEXT_WARNING, TEXT_BOTH_PASSWORD_NOT_SAME);
         }
       }
     } else {
-      Alert.alert('Warning', 'Please Enter All Credentials');
+      Alert.alert(TEXT_WARNING, TEXT_ENTER_ALL_CREDENCIALS);
     }
   };
 
@@ -66,23 +77,23 @@ const ChangePassword = () => {
         <Text style={styles.text_header}>Change Password !</Text>
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
-        <Text style={styles.text_footer}>New Password</Text>
+        <Text style={styles.text_footer}>{TEXT_NEW_PASSWORD}</Text>
         <View style={styles.action}>
           <Feather name={'lock'} color="#05375a" size={20} />
           <TextInput
-            placeholder="Your New Password"
+            placeholder={TEXT_NEW_PASSWORD}
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={val => textInputChange({name: 'OldPassword', val})}
           />
         </View>
         <Text style={[styles.text_footer, {marginTop: 35}]}>
-          Conform Password
+          {TEXT_CONFIRM_PASSWORD}
         </Text>
         <View style={styles.action}>
           <Feather name={'lock'} color="#05375a" size={20} />
           <TextInput
-            placeholder="Conform Password"
+            placeholder={TEXT_CONFIRM_PASSWORD}
             secureTextEntry={data.secureTextEntry ? true : false}
             style={styles.textInput}
             autoCapitalize="none"
@@ -105,7 +116,7 @@ const ChangePassword = () => {
               colors={['#08d4c4', '#01ab9d']}
               style={styles.signIn}>
               <Text style={[styles.textSign, {color: '#fff'}]}>
-                Change Password
+                {TEXT_CHANGE_PASSWORD}
               </Text>
             </LinearGradient>
           </TouchableOpacity>
@@ -115,7 +126,9 @@ const ChangePassword = () => {
               styles.signIn,
               {borderColor: '#009387', marginTop: 15, borderWidth: 1},
             ]}>
-            <Text style={[styles.textSign, {color: '#009387'}]}>Go Back</Text>
+            <Text style={[styles.textSign, {color: '#009387'}]}>
+              {TEXT_GO_BACK}
+            </Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>

@@ -17,6 +17,22 @@ import {useNavigation} from '@react-navigation/native';
 import {LOGIN, OTPVERIFY} from '../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
 import {Register_User} from '../../redux/action/Actions';
+import {
+  TEXT_ALERT,
+  TEXT_EMAIL,
+  TEXT_ENTER_ALL_CREDENCIALS,
+  TEXT_ENTER_EMAIL,
+  TEXT_ENTER_MO_NO,
+  TEXT_ENTER_NAME,
+  TEXT_ENTER_PASSWORD,
+  TEXT_ENTER_VALIDE_EMAIL,
+  TEXT_MOBILE_NO,
+  TEXT_NAME,
+  TEXT_PASSWORD,
+  TEXT_REGISTER_HERE,
+  TEXT_SIGN_IN,
+  TEXT_SIGN_UP,
+} from '../../constants/strings';
 
 const RegisterComponent = () => {
   const dispatch = useDispatch();
@@ -44,26 +60,26 @@ const RegisterComponent = () => {
   const Submit_RegisterData = () => {
     if (form != null) {
       if (!form.Name) {
-        Alert.alert('Alert', 'Pleaser Insert Name');
+        Alert.alert(TEXT_ALERT, TEXT_ENTER_NAME);
       }
       if (!form.Mo_No) {
-        Alert.alert('Alert', 'Pleaser Insert Mo Number');
+        Alert.alert(TEXT_ALERT, TEXT_ENTER_MO_NO);
       }
       if (!form.Email) {
-        Alert.alert('Alert', 'Pleaser Insert Email');
+        Alert.alert(TEXT_ALERT, TEXT_ENTER_EMAIL);
       }
       if (!form.Password) {
-        Alert.alert('Alert', 'Pleaser Insert Password');
+        Alert.alert(TEXT_ALERT, TEXT_ENTER_PASSWORD);
       }
       if ((form.Name && form.Email && form.Mo_No && form.Password) != '') {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.Email)) {
           dispatch(Register_User(form));
         } else {
-          Alert.alert('Alert', 'email not valid');
+          Alert.alert(TEXT_ALERT, TEXT_ENTER_VALIDE_EMAIL);
         }
       }
     } else {
-      Alert.alert('Alert', 'Pleaser Insert All Data');
+      Alert.alert(TEXT_ALERT, TEXT_ENTER_ALL_CREDENCIALS);
     }
   };
 
@@ -77,52 +93,47 @@ const RegisterComponent = () => {
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.text_header}>Register here!</Text>
+        <Text style={styles.text_header}>{TEXT_REGISTER_HERE}</Text>
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         <ScrollView>
-          <Text style={styles.text_footer}>Name</Text>
+          <Text style={styles.text_footer}>{TEXT_NAME}</Text>
           <View style={styles.action}>
             <FontAwesome name={'user-o'} color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Name"
+              placeholder={TEXT_ENTER_NAME}
               style={styles.textInput}
               autoCapitalize="none"
               onChangeText={val => textInputChange({name: 'Name', val})}
             />
           </View>
-          <Text style={styles.text_footer}>Mobile Noumber</Text>
+          <Text style={styles.text_footer}>{TEXT_MOBILE_NO}</Text>
           <View style={styles.action}>
             <FontAwesome name={'user-o'} color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Noumber"
+              placeholder={TEXT_ENTER_MO_NO}
               style={styles.textInput}
               keyboardType="number-pad"
               autoCapitalize="none"
               onChangeText={val => textInputChange({name: 'Mo_No', val})}
             />
           </View>
-          <Text style={styles.text_footer}>Email</Text>
+          <Text style={styles.text_footer}>{TEXT_EMAIL}</Text>
           <View style={styles.action}>
             <FontAwesome name={'user-o'} color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Email"
+              placeholder={TEXT_ENTER_EMAIL}
               style={styles.textInput}
               keyboardType="email-address"
               autoCapitalize="none"
               onChangeText={val => textInputChange({name: 'Email', val})}
             />
-            {/* {data.check_textInputChange ? (
-            <Animatable.View animation={'bounceIn'}>
-              <Feather name="check-circle" color="green" size={20} />
-            </Animatable.View>
-          ) : null} */}
           </View>
-          <Text style={[styles.text_footer]}>Password</Text>
+          <Text style={[styles.text_footer]}>{TEXT_PASSWORD}</Text>
           <View style={styles.action}>
             <Feather name={'lock'} color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Password"
+              placeholder={TEXT_ENTER_PASSWORD}
               secureTextEntry={data.secureTextEntry ? true : false}
               style={styles.textInput}
               autoCapitalize="none"
@@ -143,7 +154,9 @@ const RegisterComponent = () => {
               <LinearGradient
                 colors={['#08d4c4', '#01ab9d']}
                 style={styles.signIn}>
-                <Text style={[styles.textSign, {color: '#fff'}]}>Sign Up</Text>
+                <Text style={[styles.textSign, {color: '#fff'}]}>
+                  {TEXT_SIGN_UP}
+                </Text>
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
@@ -152,7 +165,9 @@ const RegisterComponent = () => {
                 styles.signIn,
                 {borderColor: '#009387', marginTop: 15, borderWidth: 1},
               ]}>
-              <Text style={[styles.textSign, {color: '#009387'}]}>Sign In</Text>
+              <Text style={[styles.textSign, {color: '#009387'}]}>
+                {TEXT_SIGN_IN}
+              </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

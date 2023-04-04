@@ -17,11 +17,23 @@ import {useNavigation} from '@react-navigation/native';
 import {FORGOTPASSWORD, REGISTER} from '../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
 import {Login_User} from '../../redux/action/Actions';
+import {
+  TEXT_ALERT,
+  TEXT_EMAIL,
+  TEXT_ENTER_ALL_CREDENCIALS,
+  TEXT_ENTER_EMAIL,
+  TEXT_ENTER_PASSWORD,
+  TEXT_ENTER_VALIDE_EMAIL,
+  TEXT_PLEASE_ENTER_EMAIL,
+  TEXT_PLEASE_ENTER_PASSWORD,
+  TEXT_SIGN_IN,
+  TEXT_SIGN_UP,
+  TEXT_WELCOME_BACK,
+} from '../../constants/strings';
 
 const LoginComponent = () => {
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
-  const loginData = useSelector(state => state.LoginReducer);
   const [data, setData] = useState({
     check_textInputChange: false,
     secureTextEntry: true,
@@ -36,9 +48,9 @@ const LoginComponent = () => {
     if (Lform != null) {
       if (!Lform.Password || !Lform.Email) {
         if (!Lform.Email) {
-          Alert.alert('Warning', 'Please Enter Email');
+          Alert.alert(TEXT_ALERT, TEXT_PLEASE_ENTER_EMAIL);
         } else {
-          Alert.alert('Warning', 'Please Enter Password');
+          Alert.alert(TEXT_ALERT, TEXT_PLEASE_ENTER_PASSWORD);
         }
       } else {
         if (
@@ -47,11 +59,11 @@ const LoginComponent = () => {
         ) {
           dispatch(Login_User(Lform));
         } else {
-          Alert.alert('Warning', 'Enter Valid Email');
+          Alert.alert(TEXT_ALERT, TEXT_ENTER_VALIDE_EMAIL);
         }
       }
     } else {
-      Alert.alert('Warning', 'Please Enter Login Credentials');
+      Alert.alert(TEXT_ALERT, TEXT_ENTER_ALL_CREDENCIALS);
     }
   };
 
@@ -65,15 +77,15 @@ const LoginComponent = () => {
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.text_header}>Welcome back !</Text>
+        <Text style={styles.text_header}>{TEXT_WELCOME_BACK}</Text>
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={styles.text_footer}>Email</Text>
+          <Text style={styles.text_footer}>{TEXT_EMAIL}</Text>
           <View style={styles.action}>
             <FontAwesome name={'user-o'} color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Email"
+              placeholder={TEXT_ENTER_EMAIL}
               style={styles.textInput}
               keyboardType="email-address"
               autoCapitalize="none"
@@ -84,7 +96,7 @@ const LoginComponent = () => {
           <View style={styles.action}>
             <Feather name={'lock'} color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Password"
+              placeholder={TEXT_ENTER_PASSWORD}
               secureTextEntry={data.secureTextEntry ? true : false}
               style={styles.textInput}
               autoCapitalize="none"
@@ -112,7 +124,9 @@ const LoginComponent = () => {
               <LinearGradient
                 colors={['#08d4c4', '#01ab9d']}
                 style={styles.signIn}>
-                <Text style={[styles.textSign, {color: '#fff'}]}>Sign In</Text>
+                <Text style={[styles.textSign, {color: '#fff'}]}>
+                  {TEXT_SIGN_IN}
+                </Text>
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
@@ -121,7 +135,9 @@ const LoginComponent = () => {
                 styles.signIn,
                 {borderColor: '#009387', marginTop: 15, borderWidth: 1},
               ]}>
-              <Text style={[styles.textSign, {color: '#009387'}]}>Sign Up</Text>
+              <Text style={[styles.textSign, {color: '#009387'}]}>
+                {TEXT_SIGN_UP}
+              </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

@@ -8,6 +8,11 @@ import {
   Favorite_Data_Remove,
   Remove_Favorite_Data_In_Remove,
 } from '../../../redux/action/FavoriteAction';
+import {
+  TEXT_ALERT,
+  TEXT_DATA_NOT_REMOVE_IN_FAVORITE,
+  TEXT_DATA_REMOVE_IN_FAVORITE,
+} from '../../../constants/strings';
 
 const LikeProduct = props => {
   const dispatch = useDispatch();
@@ -19,12 +24,12 @@ const LikeProduct = props => {
         dispatch(Favorite_Data_Get());
         dispatch(Remove_Favorite_Data_In_Remove());
         ToastAndroid.show(
-          'Data Remove Into Favorite',
+          TEXT_DATA_REMOVE_IN_FAVORITE,
           ToastAndroid.BOTTOM,
           ToastAndroid.SHORT,
         );
       } else if (response.status == 0) {
-        Alert.alert('Alert', 'Data not Remove in to Favorite');
+        Alert.alert(TEXT_ALERT, TEXT_DATA_NOT_REMOVE_IN_FAVORITE);
         dispatch(Remove_Favorite_Data_In_Remove());
       }
     }

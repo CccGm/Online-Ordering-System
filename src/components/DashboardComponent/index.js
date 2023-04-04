@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
 import {CART} from '../../constants/routeName';
 import {useSelector} from 'react-redux';
+import {TEXT_WELCOME} from '../../constants/strings';
 
 const DashboardComponent = () => {
   const productData = useSelector(state => state.GetProductReducer);
@@ -19,8 +20,8 @@ const DashboardComponent = () => {
   const [userData, setUserData] = useState({Name: null});
 
   useState(() => {
-    UserData.then(aa => {
-      setUserData({...userData, Name: aa.Name});
+    UserData.then(res => {
+      setUserData({...userData, Name: res.Name});
     });
   }, []);
 
@@ -50,40 +51,22 @@ const DashboardComponent = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.welcomContainer}>
         <View>
-          <Text style={{fontSize: 22, fontWeight: 'bold'}}>Welcome</Text>
-          <Text style={{fontSize: 30, fontWeight: 'bold', color: '#0d9b5bcc'}}>
+          <Text style={styles.wlcome}>{TEXT_WELCOME}</Text>
+          <Text style={styles.userText}>
             {userData.Name} {'\u2728'}
           </Text>
         </View>
         <TouchableOpacity
-          style={{
-            // marginTop: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          style={styles.iconTouch}
           onPress={() => navigate(CART)}>
-          <Icon name="shopping-cart" size={28} color={'#000000'} />
-          <View
-            style={{
-              position: 'absolute',
-              width: 55,
-              height: 55,
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: '#00ff0035',
-              borderRadius: 30,
-            }}>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: 25,
-                fontWeight: 'bold',
-                textAlign: 'center',
-                marginLeft: 5,
-                marginBottom: 3,
-              }}>
-              {cartData.data.length}
-            </Text>
+          <View style={styles.iconView}>
+            <Icon
+              name="shopping-cart"
+              size={24}
+              color={'#ffffff'}
+              style={{position: 'absolute'}}
+            />
+            <Text style={styles.iconText}>{cartData.data.length}</Text>
           </View>
         </TouchableOpacity>
       </View>

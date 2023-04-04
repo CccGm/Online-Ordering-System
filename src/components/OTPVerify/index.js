@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Animated,
-  Button,
   Image,
   SafeAreaView,
   Text,
@@ -27,7 +26,16 @@ import styles, {
 import {LOGIN} from '../../constants/routeName';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
-import {Register_Otp} from '../../redux/action/Actions';
+import {Register_Otp, Resend_Otp} from '../../redux/action/Actions';
+import {
+  TEXT_ALERT,
+  TEXT_CODE_NOT_RECIVED,
+  TEXT_PLEASE_INSERT_ALL_VALUE,
+  TEXT_RESEND_OTP,
+  TEXT_TIME_REMAINING,
+  TEXT_VERIFICATION,
+  TEXT_VERIFY,
+} from '../../constants/strings';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -102,15 +110,16 @@ const OTPVerify = () => {
         otp: value,
       };
       dispatch(Register_Otp(data));
-      // navigation.navigate(LOGIN);
     } else {
-      Alert.alert('Alert', 'Please Insert all value');
+      Alert.alert(TEXT_ALERT, TEXT_PLEASE_INSERT_ALL_VALUE);
     }
   };
 
   const resendOTP = () => {
     setMinutes(1);
     setSeconds(30);
+
+    dispatch(Resend_Otp({userId: registerData.data.data._id}));
   };
 
   const renderCell = ({index, symbol, isFocused}) => {
@@ -139,8 +148,6 @@ const OTPVerify = () => {
       ],
     };
 
-    // Run animation on next event loop tik
-    // Because we need first return new style prop and then animate this value
     setTimeout(() => {
       animateCell({hasValue, index, isFocused});
     }, 0);
@@ -160,7 +167,7 @@ const OTPVerify = () => {
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name={'arrow-back'} size={25} color={'#000000aa'} />
       </TouchableOpacity>
-      <Text style={styles.title}>Verification</Text>
+      <Text style={styles.title}>{TEXT_VERIFICATION}</Text>
       <Image style={styles.icon} source={source} />
       <Text style={styles.subTitle}>
         Please enter the verification code{'\n'}
@@ -181,11 +188,11 @@ const OTPVerify = () => {
       <View style={styles.resendContainer}>
         {seconds > 0 || minutes > 0 ? (
           <Text style={{fontSize: 16}}>
-            Time Remaining : 0{minutes < 10 ? minutes : minutes} :{' '}
+            {TEXT_TIME_REMAINING} : 0{minutes < 10 ? minutes : minutes} :{' '}
             {seconds < 10 ? '0' + seconds : seconds}
           </Text>
         ) : (
-          <Text style={{fontSize: 16}}>Didn't recive code ?</Text>
+          <Text style={{fontSize: 16}}>{TEXT_CODE_NOT_RECIVED}</Text>
         )}
         <TouchableOpacity
           disabled={seconds > 0 || minutes > 0}
@@ -195,7 +202,7 @@ const OTPVerify = () => {
               fontSize: 16,
               color: seconds > 0 || minutes > 0 ? '#cdd2d8' : '#009387',
             }}>
-            Resend Otp
+            {TEXT_RESEND_OTP}
           </Text>
         </TouchableOpacity>
       </View>
@@ -206,7 +213,7 @@ const OTPVerify = () => {
         <LinearGradient
           colors={['#08d4c4', '#01ab9d']}
           style={styles.nextButton}>
-          <Text style={styles.nextButtonText}>Verify</Text>
+          <Text style={styles.nextButtonText}>{TEXT_VERIFY}</Text>
         </LinearGradient>
       </TouchableOpacity>
     </SafeAreaView>
