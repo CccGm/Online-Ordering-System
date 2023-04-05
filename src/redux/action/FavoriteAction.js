@@ -41,8 +41,6 @@ export const Favorite_Data_Get = data => async dispatch => {
 
 export const Favorite_Data_Add = data => async dispatch => {
   dispatch({type: ADD_FAVORITE_PRODUCT_LOADING});
-  console.log(data, 'data -          ---------');
-
   try {
     const token = await AsyncStorage.getItem('USER_jwtToken');
     await axios

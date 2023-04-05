@@ -11,7 +11,7 @@ const initialState = {
   loading: false,
 };
 
-const OTPForgotPassword = (state = initialState, {type, payload}) => {
+const ChangePasswordReducer = (state = initialState, {type, payload}) => {
   switch (type) {
     case CHANGE_PASSWORD_LOADING:
       return {
@@ -41,4 +41,4 @@ const OTPForgotPassword = (state = initialState, {type, payload}) => {
       return state;
   }
 };
-export default OTPForgotPassword;
+export default ChangePasswordReducer;

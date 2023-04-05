@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StatusBar,
   Text,
@@ -6,14 +6,18 @@ import {
   TouchableOpacity,
   View,
   Alert,
+  ToastAndroid,
 } from 'react-native';
 import styles from './styles';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import {Change_Password} from '../../redux/action/ForgotPassword';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  Change_Password,
+  Remove_Change_Password_data,
+} from '../../redux/action/ForgotPassword';
 import {
   TEXT_BOTH_PASSWORD_NOT_SAME,
   TEXT_CHANGE_PASSWORD,
@@ -25,15 +29,30 @@ import {
   TEXT_NEW_PASSWORD,
   TEXT_WARNING,
 } from '../../constants/strings';
+import {LOGIN} from '../../constants/routeName';
+import {setLogout} from '../../redux/action/Actions';
 
 const ChangePassword = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const chagePass = useSelector(state => state.ChangePasswordReducer);
   const [data, setData] = useState({
     check_textInputChange: false,
     secureTextEntry: true,
   });
   const [Lform, setForm] = useState(null);
+  console.log(chagePass, 'pass----------');
+  useEffect(() => {
+    if (chagePass.data.status == 1 && chagePass.loading == false) {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        'Password Change Successfully',
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+      );
+      dispatch(Remove_Change_Password_data());
+    }
+  }, [chagePass]);
 
   const textInputChange = ({name, val}) => {
     setForm({...Lform, [name]: val});

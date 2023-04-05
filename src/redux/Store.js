@@ -17,6 +17,8 @@ import CheckOutReducer from './reducer/CheckOutReducer';
 import GetHistoryDataReducer from './reducer/GetHistoryDataReducer';
 import ForgotPasswordReducer from './reducer/ForgotPasswordReducer';
 import OTPForgotPassword from './reducer/OTPForgotPassword';
+import ChangePasswordReducer from './reducer/ChangePasswordReducer';
+
 const rootReduce = combineReducers({
   RegisterReducer,
   OTPReducer,
@@ -35,6 +37,7 @@ const rootReduce = combineReducers({
   GetHistoryDataReducer,
   ForgotPasswordReducer,
   OTPForgotPassword,
+  ChangePasswordReducer,
 });
 
 export const Store = createStore(rootReduce, applyMiddleware(thunk));

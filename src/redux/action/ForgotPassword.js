@@ -46,10 +46,9 @@ export const Forgot_Password = data => async dispatch => {
 };
 
 export const Forgot_Password_OTP = data => async dispatch => {
-  console.log(data, 'otpdata-----');
   if (data) {
     dispatch({type: OTP_FORGOT_PASSWORD_LOADING});
-    console.log('API Call');
+
     try {
       await axios.post(verify_ForgotPassword_Otp, data).then(result => {
         dispatch({type: OTP_FORGOT_PASSWORD_SUCCESS, payload: result.data});
@@ -62,15 +61,23 @@ export const Forgot_Password_OTP = data => async dispatch => {
 };
 
 export const Change_Password = data => async dispatch => {
-  console.log(data, 'password data==----');
   if (data) {
     dispatch({type: CHANGE_PASSWORD_LOADING});
-
     try {
-      await axios.post(change_Password, data).then(result => {
-        console.log(result.data, 'new password changed--------');
-        dispatch({type: CHANGE_PASSWORD_SUCCESS, payload: result.data});
-      });
+      const token = await AsyncStorage.getItem('USER_jwtToken');
+      await axios
+        .post(
+          change_Password,
+          {data},
+          {
+            headers: {
+              Authorization: token,
+            },
+          },
+        )
+        .then(result => {
+          dispatch({type: CHANGE_PASSWORD_SUCCESS, payload: result.data});
+        });
     } catch (error) {
       Alert.alert('password not change');
       dispatch({type: CHANGE_PASSWORD_FAUILER, payload: error});

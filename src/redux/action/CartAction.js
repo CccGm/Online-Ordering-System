@@ -31,8 +31,6 @@ export const Cart_Data_Get = data => async dispatch => {
         },
       })
       .then(response => {
-        console.log(response.data, 'Hiii ---------------');
-
         dispatch({type: CART_DATA_SUCCESS, payload: response.data});
       });
   } catch (error) {
@@ -43,7 +41,6 @@ export const Cart_Data_Get = data => async dispatch => {
 
 export const Cart_Data_Add = data => async dispatch => {
   dispatch({type: CART_ADD_DATA_LOADING});
-  console.log(data, 'data -          ---------');
 
   try {
     const token = await AsyncStorage.getItem('USER_jwtToken');

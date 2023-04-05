@@ -4,10 +4,11 @@ import {Avatar, Caption, Title, TouchableRipple} from 'react-native-paper';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
-import {LIKE} from '../../constants/routeName';
+import {CHANGEPASSWORD, LIKE} from '../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLogout} from '../../redux/action/Actions';
 import {
+  TEXT_CHANGE_PASSWORD,
   TEXT_LOG_OUT,
   TEXT_SETTING,
   TEXT_SHARE_YOUR_FRIEND,
@@ -104,10 +105,13 @@ const ProfileComponent = () => {
             <Text style={styles.menuItemText}>{TEXT_SHARE_YOUR_FRIEND}</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple
+          onPress={() => {
+            navigate(CHANGEPASSWORD);
+          }}>
           <View style={styles.menuItem}>
             <Icon name={'account-check-outline'} color={'#FF6347'} size={25} />
-            <Text style={styles.menuItemText}>{TEXT_SUPPORT}</Text>
+            <Text style={styles.menuItemText}>{TEXT_CHANGE_PASSWORD}</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>

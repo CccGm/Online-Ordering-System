@@ -31,7 +31,7 @@ export const Register_User = data => async dispatch => {
     };
 
     dispatch({type: REGISTER_LOADING});
-    console.log('API Call');
+
     try {
       await axios.post(register, json).then(result => {
         dispatch({type: REGISTER_SUCCESS, payload: result.data});
@@ -51,7 +51,7 @@ export const Register_User = data => async dispatch => {
 export const Register_Otp = data => async dispatch => {
   if (data) {
     dispatch({type: OTP_LOADING});
-    console.log('API Call');
+
     try {
       await axios.post(verify_Register_Otp, data).then(result => {
         dispatch({type: OTP_SUCCESS, payload: result.data});
@@ -66,7 +66,7 @@ export const Register_Otp = data => async dispatch => {
 export const Resend_Otp = data => async dispatch => {
   if (data) {
     dispatch({type: OTP_LOADING});
-    console.log('API Call');
+
     try {
       await axios.post(resend_Otp, data).then(result => {
         ToastAndroid.show(
@@ -74,7 +74,6 @@ export const Resend_Otp = data => async dispatch => {
           ToastAndroid.BOTTOM,
           ToastAndroid.SHORT,
         );
-        console.log(result.data, 'resend otp');
       });
     } catch (error) {
       Alert.alert('OTP not send');
@@ -90,7 +89,6 @@ export const Login_User = data => async dispatch => {
     };
 
     dispatch({type: LOGIN_LOADING});
-    console.log('API Call');
     try {
       await axios.post(login, json).then(async result => {
         dispatch({type: LOGIN_SUCCESS, payload: result.data});
