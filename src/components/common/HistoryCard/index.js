@@ -1,7 +1,11 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import styles from './styles';
-import {TEXT_ORDER_DATE, TEXT_ORDER_PRICE} from '../../../constants/strings';
+import {
+  TEXT_ORDER_DATE,
+  TEXT_ORDER_PRICE,
+  TEXT_ORDER_QUANTITY,
+} from '../../../constants/strings';
 
 const HistoryCard = props => {
   return (
@@ -14,24 +18,17 @@ const HistoryCard = props => {
         />
       </View>
       <View style={styles.textContainer}>
-        <Text
-          style={[
-            styles.text,
-            {
-              color: '#000000cc',
-              fontWeight: 'bold',
-            },
-          ]}
-          numberOfLines={1}>
+        <Text style={styles.textHeader} numberOfLines={1}>
           {props.item.title}
         </Text>
-        <Text
-          style={[styles.text, {color: 'grey', fontSize: 18, marginTop: 5}]}>
-          {TEXT_ORDER_DATE} : 19 - 5 - 23
+        <Text style={[styles.text]} numberOfLines={1}>
+          {TEXT_ORDER_DATE} : {props.item.createdAt}
         </Text>
-        <Text
-          style={[styles.text, {color: 'grey', fontSize: 18, marginTop: 5}]}>
-          {TEXT_ORDER_PRICE} : {'\u20A8'} : {props.item.price}
+        <Text style={[styles.text]}>
+          {TEXT_ORDER_QUANTITY} : {props.item.quantity}
+        </Text>
+        <Text style={[styles.text]}>
+          {TEXT_ORDER_PRICE} : {props.item.productTotalAmount}.{'\u20A8'}
         </Text>
       </View>
     </View>

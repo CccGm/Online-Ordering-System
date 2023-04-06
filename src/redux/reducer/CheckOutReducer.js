@@ -1,6 +1,7 @@
 import {
   CHECKOUT_PRODUCT_FAUILER,
   CHECKOUT_PRODUCT_LOADING,
+  CHECKOUT_PRODUCT_REMOVE,
   CHECKOUT_PRODUCT_SUCCESS,
 } from '../../constants/actionTypes';
 
@@ -31,6 +32,14 @@ const CheckOutReducer = (state = initialState, {type, payload}) => {
         error: payload,
         status: 0,
         loading: false,
+      };
+    case CHECKOUT_PRODUCT_REMOVE:
+      return {
+        ...state,
+        data: {},
+        error: null,
+        loading: false,
+        status: null,
       };
     default:
       return state;

@@ -20,6 +20,12 @@ import {
 import axios from '../../helpers/axiosIntersepter';
 import {Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  TEXT_ENTER_VALIDE_EMAIL,
+  TEXT_ENTER_VALIDE_OTP,
+  TEXT_ERROR,
+  TEXT_PASSWRD_NOT_CHANGE,
+} from '../../constants/strings';
 
 export const Forgot_Password = data => async dispatch => {
   dispatch({type: FORGOT_PASSWORD_LOADING});
@@ -40,7 +46,7 @@ export const Forgot_Password = data => async dispatch => {
         dispatch({type: FORGOT_PASSWORD_SUCCESS, payload: response});
       });
   } catch (error) {
-    Alert.alert('Error', 'Email not Velid');
+    Alert.alert(TEXT_ERROR, TEXT_ENTER_VALIDE_EMAIL);
     dispatch({type: FORGOT_PASSWORD_FAUILER, payload: error});
   }
 };
@@ -54,7 +60,7 @@ export const Forgot_Password_OTP = data => async dispatch => {
         dispatch({type: OTP_FORGOT_PASSWORD_SUCCESS, payload: result.data});
       });
     } catch (error) {
-      Alert.alert('Invalid OTP');
+      Alert.alert(TEXT_ERROR, TEXT_ENTER_VALIDE_OTP);
       dispatch({type: OTP_FORGOT_PASSWORD_FAUILER, payload: error});
     }
   }
@@ -79,7 +85,7 @@ export const Change_Password = data => async dispatch => {
           dispatch({type: CHANGE_PASSWORD_SUCCESS, payload: result.data});
         });
     } catch (error) {
-      Alert.alert('password not change');
+      Alert.alert(TEXT_ERROR, TEXT_PASSWRD_NOT_CHANGE);
       dispatch({type: CHANGE_PASSWORD_FAUILER, payload: error});
     }
   }

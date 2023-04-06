@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 import {
   ADD_FAVORITE_PRODUCT_FAUILER,
   ADD_FAVORITE_PRODUCT_LOADING,
@@ -19,6 +19,14 @@ import {
   add_Favorite_Product,
   remove_Favorite_Product,
 } from '../api';
+import {
+  TEXT_DATA_ADDED_INTO_FAVORITE,
+  TEXT_DATA_NOT_REMOVE_IN_FAVORITE,
+  TEXT_DATA_REMOVE_IN_FAVORITE,
+  TEXT_ERROR,
+  TEXT_FAVORITE_DATA_NOT_ADD,
+  TEXT_FAVORITE_DATA_NOT_GET,
+} from '../../constants/strings';
 
 export const Favorite_Data_Get = data => async dispatch => {
   dispatch({type: FAVORITE_PRODUCT_GET_LOADING});
@@ -32,9 +40,14 @@ export const Favorite_Data_Get = data => async dispatch => {
       })
       .then(response => {
         dispatch({type: FAVORITE_PRODUCT_GET_SUCCESS, payload: response.data});
+        ToastAndroid.show(
+          TEXT_DATA_ADDED_INTO_FAVORITE,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
       });
   } catch (error) {
-    Alert.alert('Error', 'Favorite data not get ');
+    Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_GET);
     dispatch({type: FAVORITE_PRODUCT_GET_FAUILER, payload: error});
   }
 };
@@ -57,7 +70,7 @@ export const Favorite_Data_Add = data => async dispatch => {
         dispatch({type: ADD_FAVORITE_PRODUCT_SUCCESS, payload: response});
       });
   } catch (error) {
-    Alert.alert('Error', 'Favorite data not add ');
+    Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_ADD);
     dispatch({type: ADD_FAVORITE_PRODUCT_FAUILER, payload: error});
   }
 };
@@ -78,9 +91,14 @@ export const Favorite_Data_Remove = data => async dispatch => {
       )
       .then(response => {
         dispatch({type: REMOVE_FAVORITE_PRODUCT_SUCCESS, payload: response});
+        ToastAndroid.show(
+          TEXT_DATA_REMOVE_IN_FAVORITE,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
       });
   } catch (error) {
-    Alert.alert('Error', 'Favorite not remove');
+    Alert.alert(TEXT_ERROR, TEXT_DATA_NOT_REMOVE_IN_FAVORITE);
     dispatch({type: REMOVE_FAVORITE_PRODUCT_FAUILER, payload: error});
   }
 };

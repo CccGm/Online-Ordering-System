@@ -20,6 +20,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from '../../helpers/axiosIntersepter';
 import {login, register, verify_Register_Otp} from '../api';
 import {resend_Otp} from '../api';
+import {
+  TEXT_ERROR,
+  TEXT_INVALID_LOGIN,
+  TEXT_OTP_NOT_SEND,
+  TEXT_OTP_SEND_IN_YOUR_MAIL,
+} from '../../constants/strings';
 
 export const Register_User = data => async dispatch => {
   if (data) {
@@ -43,7 +49,7 @@ export const Register_User = data => async dispatch => {
       });
     } catch (error) {
       dispatch({type: REGISTER_FAUILER, payload: error});
-      Alert.alert('Invalid Register');
+      Alert.alert(TEXT_ERROR, TEXT_INVALID_REGISTER);
     }
   }
 };
@@ -57,7 +63,7 @@ export const Register_Otp = data => async dispatch => {
         dispatch({type: OTP_SUCCESS, payload: result.data});
       });
     } catch (error) {
-      Alert.alert('Invalid OTP');
+      Alert.alert(TEXT_ERROR, TEXT_INVALID_OTP);
       dispatch({type: OTP_FAUILER, payload: error});
     }
   }
@@ -70,13 +76,13 @@ export const Resend_Otp = data => async dispatch => {
     try {
       await axios.post(resend_Otp, data).then(result => {
         ToastAndroid.show(
-          'OTP send in Your Email',
+          TEXT_OTP_SEND_IN_YOUR_MAIL,
           ToastAndroid.BOTTOM,
           ToastAndroid.SHORT,
         );
       });
     } catch (error) {
-      Alert.alert('OTP not send');
+      Alert.alert(TEXT_ERROR, TEXT_OTP_NOT_SEND);
     }
   }
 };
@@ -117,7 +123,7 @@ export const Login_User = data => async dispatch => {
       });
     } catch (error) {
       dispatch({type: LOGIN_FAUILER, payload: error});
-      Alert.alert('Invalid Login');
+      Alert.alert(TEXT_ERROR, TEXT_INVALID_LOGIN);
     }
   }
 };

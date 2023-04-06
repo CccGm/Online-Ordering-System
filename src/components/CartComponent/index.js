@@ -1,16 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ProductCart from '../common/ProductCart';
 import styles from './styles';
-import {CheckOut_Data_Add} from '../../redux/action/CompleteOrder';
+import {
+  CheckOut_Data_Add,
+  Remove_CheckOut_Data_Add,
+} from '../../redux/action/CompleteOrder';
 import {TEXT_CHECK_OUT, TEXT_TOTAL_PRICE} from '../../constants/strings';
+import {useNavigation} from '@react-navigation/native';
+import {Cart_Data_Get} from '../../redux/action/CartAction';
+import {THANKYOU} from '../../constants/routeName';
 
 const CartComponent = () => {
   const cartData = useSelector(state => state.GetCartReducer);
+  const complete = useSelector(state => state.CheckOutReducer);
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  console.log(cartData, 'cartData');
+  useEffect(() => {
+    if (complete.loading == false) {
+      if (complete.status == 1) {
+        navigation.navigate(THANKYOU);
+        dispatch(Cart_Data_Get());
+        dispatch(Remove_CheckOut_Data_Add());
+      }
+    }
+  }, [complete]);
+
   return (
     <View style={styles.container}>
       <View style={{flex: 1, marginVertical: 10}}>
@@ -30,18 +47,26 @@ const CartComponent = () => {
             {'\u20A8'} : {cartData.total}
           </Text>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            dispatch(
-              CheckOut_Data_Add({
-                cart_id: cartData.cartId,
-                Total: cartData.total,
-              }),
-            );
-          }}>
-          <Text style={styles.text}>{TEXT_CHECK_OUT}</Text>
-        </TouchableOpacity>
+        {complete.loading == false ? (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              dispatch(
+                CheckOut_Data_Add({
+                  cart_id: cartData.data[0].cartId,
+                  Total: cartData.total,
+                }),
+              );
+            }}>
+            <Text style={styles.text}>{TEXT_CHECK_OUT}</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={[styles.button, {backgroundColor: '#34691090'}]}
+            disabled={true}>
+            <Text style={styles.text}>{TEXT_CHECK_OUT}</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

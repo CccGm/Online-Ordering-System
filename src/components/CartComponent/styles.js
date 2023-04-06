@@ -23,7 +23,7 @@ export default styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#88e749d5',
+    backgroundColor: '#346910ff',
     borderRadius: 25,
     marginVertical: 8,
     paddingHorizontal: 50,

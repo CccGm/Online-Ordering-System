@@ -7,6 +7,7 @@ import {
 } from '../../constants/actionTypes';
 import axios from '../../helpers/axiosIntersepter';
 import {get_All_Product_Data} from '../api';
+import {TEXT_ERROR} from '../../constants/strings';
 
 export const Product_Data = data => async dispatch => {
   dispatch({type: PRODUCT_DATA_LOADING});
@@ -22,7 +23,7 @@ export const Product_Data = data => async dispatch => {
         dispatch({type: PRODUCT_DATA_SUCCESS, payload: response.data.data});
       });
   } catch (error) {
-    Alert.alert('Error', 'home data not get ');
+    Alert.alert(TEXT_ERROR, TEXT_HOME_DATA_NOT_GET);
     dispatch({type: PRODUCT_DATA_FAUILER, payload: error});
   }
 };

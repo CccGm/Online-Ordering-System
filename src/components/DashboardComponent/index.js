@@ -35,10 +35,8 @@ const DashboardComponent = () => {
           ? item.title.toUpperCase()
           : ''.toLowerCase();
         const textData = text.toUpperCase();
-        console.log('--------', textData);
         return itemData.indexOf(textData) > -1;
       });
-      console.log('data ---------', newData);
       setFilterData(newData);
       setSearch(text);
     } else {

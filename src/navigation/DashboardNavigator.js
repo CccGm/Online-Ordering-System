@@ -9,10 +9,12 @@ import {
   HISTORY,
   LIKE,
   PRODUCTDETAILS,
+  THANKYOU,
 } from '../constants/routeName';
 import ChangePassword from '../components/ChangePassword';
 import LikeScreen from '../screens/LikeScreen';
 import HistoryScreen from '../screens/HistoryScreen';
+import ThankYouScreen from '../screens/ThanksYouScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,7 @@ const DashboardNavigator = () => {
       <Stack.Screen name={CHANGEPASSWORD} component={ChangePassword} />
       <Stack.Screen name={LIKE} component={LikeScreen} />
       <Stack.Screen name={HISTORY} component={HistoryScreen} />
+      <Stack.Screen name={THANKYOU} component={ThankYouScreen} />
     </Stack.Navigator>
   );
 };

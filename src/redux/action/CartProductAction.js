@@ -10,8 +10,15 @@ import {
 } from '../../constants/actionTypes';
 import axios from '../../helpers/axiosIntersepter';
 import {decrease_Product, increase_Product} from '../api';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  TEXT_ERROR,
+  TEXT_PRODUCT_DECRESED,
+  TEXT_PRODUCT_INCRESED,
+  TEXT_PRODUCT_NOT_DECRESED,
+  TEXT_PRODUCT_NOT_INCRESED,
+} from '../../constants/strings';
 
 export const Increase_Product = data => async dispatch => {
   dispatch({type: CART_INCREASE_DATA_LOADING});
@@ -32,9 +39,14 @@ export const Increase_Product = data => async dispatch => {
           type: CART_INCREASE_DATA_SUCCESS,
           payload: response,
         });
+        ToastAndroid.show(
+          TEXT_PRODUCT_INCRESED,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
       });
   } catch (error) {
-    Alert.alert('Error', 'data not get ');
+    Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_INCRESED);
     dispatch({type: CART_INCREASE_DATA_FAUILER, payload: error});
   }
 };
@@ -58,9 +70,14 @@ export const Decrease_Product = data => async dispatch => {
           type: CART_DECREASE_DATA_SUCCESS,
           payload: response,
         });
+        ToastAndroid.show(
+          TEXT_PRODUCT_DECRESED,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
       });
   } catch (error) {
-    Alert.alert('Error', 'data not get ');
+    Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_DECRESED);
     dispatch({type: CART_DECREASE_DATA_FAUILER, payload: error});
   }
 };

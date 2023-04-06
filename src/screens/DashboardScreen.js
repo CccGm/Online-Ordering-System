@@ -13,8 +13,6 @@ const DashboardScreen = () => {
   const dispatch = useDispatch();
   const productData = useSelector(state => state.GetProductReducer);
 
-  console.log(productData.loading);
-
   const check = async () => {
     let n = await AsyncStorage.getItem('USER_jwtToken');
     if (n != undefined && n != null) {

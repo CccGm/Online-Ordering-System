@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 import {
   CART_ADD_DATA_FAUILER,
   CART_ADD_DATA_LOADING,
@@ -19,6 +19,14 @@ import {
   get_Cart_Data,
   remove_Product_In_Cart,
 } from '../api';
+import {
+  TEXT_CART_DATA_NOT_ADD,
+  TEXT_CART_DATA_NOT_GET,
+  TEXT_ERROR,
+  TEXT_PRODUCT_INCRESED,
+  TEXT_PRODUCT_NOT_REMOVE,
+  TEXT_PRODUCT_REMOVE,
+} from '../../constants/strings';
 
 export const Cart_Data_Get = data => async dispatch => {
   dispatch({type: CART_DATA_LOADING});
@@ -34,7 +42,7 @@ export const Cart_Data_Get = data => async dispatch => {
         dispatch({type: CART_DATA_SUCCESS, payload: response.data});
       });
   } catch (error) {
-    Alert.alert('Error', 'cart data not get ');
+    Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_GET);
     dispatch({type: CART_DATA_FAUILER, payload: error});
   }
 };
@@ -58,7 +66,7 @@ export const Cart_Data_Add = data => async dispatch => {
         dispatch({type: CART_ADD_DATA_SUCCESS, payload: response});
       });
   } catch (error) {
-    Alert.alert('Error', 'cart data not add ');
+    Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_ADD);
     dispatch({type: CART_ADD_DATA_FAUILER, payload: error});
   }
 };
@@ -79,9 +87,14 @@ export const Cart_Data_Remove = data => async dispatch => {
       )
       .then(response => {
         dispatch({type: CART_REMOVE_DATA_SUCCESS, payload: response});
+        ToastAndroid.show(
+          TEXT_PRODUCT_REMOVE,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
       });
   } catch (error) {
-    Alert.alert('Error', 'product not remove');
+    Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_REMOVE);
     dispatch({type: CART_REMOVE_DATA_FAUILER, payload: error});
   }
 };

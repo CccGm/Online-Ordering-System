@@ -12,3 +12,4 @@ export const FORGOTPASSWORD = 'Forgot Password Screen';
 export const OTPFORGOTPASSWORD = 'OTP Forgot Password Screen';
 export const CHANGEPASSWORD = 'Change Password Screen';
 export const HISTORY = 'History Screen';
+export const THANKYOU = 'ThankYou Screen';

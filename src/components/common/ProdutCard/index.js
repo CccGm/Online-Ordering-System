@@ -1,12 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  Image,
-  Text,
-  View,
-  TouchableOpacity,
-  ToastAndroid,
-  Alert,
-} from 'react-native';
+import {Image, Text, View, TouchableOpacity, Alert} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -42,13 +35,7 @@ const ProductCard = props => {
     if (response.loading == false) {
       if (response.status == 1) {
         dispatch(Remove_Favorite_Data_In_Add());
-        dispatch(Favorite_Data_Get()).then(() => {
-          ToastAndroid.show(
-            'Data Add Into Favorite',
-            ToastAndroid.BOTTOM,
-            ToastAndroid.SHORT,
-          );
-        });
+        dispatch(Favorite_Data_Get());
       } else if (response.status == 0) {
         Alert.alert('Alert', 'Data not Add in to Favorite');
         dispatch(Remove_Favorite_Data_In_Add());

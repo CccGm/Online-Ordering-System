@@ -4,11 +4,12 @@ import {Avatar, Caption, Title, TouchableRipple} from 'react-native-paper';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
-import {CHANGEPASSWORD, LIKE} from '../../constants/routeName';
+import {CHANGEPASSWORD, HISTORY, LIKE} from '../../constants/routeName';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLogout} from '../../redux/action/Actions';
 import {
   TEXT_CHANGE_PASSWORD,
+  TEXT_HISTORY_DATA,
   TEXT_LOG_OUT,
   TEXT_SETTING,
   TEXT_SHARE_YOUR_FRIEND,
@@ -99,10 +100,13 @@ const ProfileComponent = () => {
             <Text style={styles.menuItemText}>{TEXT_YOUR_FAVORITE_ITEM}</Text>
           </View>
         </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple
+          onPress={() => {
+            navigate(HISTORY);
+          }}>
           <View style={styles.menuItem}>
-            <Icon name={'share-outline'} color={'#FF6347'} size={25} />
-            <Text style={styles.menuItemText}>{TEXT_SHARE_YOUR_FRIEND}</Text>
+            <Icon name={'history'} color={'#FF6347'} size={25} />
+            <Text style={styles.menuItemText}>{TEXT_HISTORY_DATA}</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple

@@ -25,8 +25,15 @@ export default styles = StyleSheet.create({
     paddingLeft: 10,
     width: '62%',
   },
-  text: {
+  textHeader: {
     fontSize: 22,
     marginTop: 8,
+    color: '#000000cc',
+    fontWeight: 'bold',
+  },
+  text: {
+    color: 'grey',
+    fontSize: 18,
+    // marginTop: 5,
   },
 });

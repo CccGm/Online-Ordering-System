@@ -112,16 +112,22 @@ const ProductCardDetails = props => {
           </Text>
           {InCart == iteData._id ? (
             <TouchableOpacity
-              style={[styles.brnContainer, {backgroundColor: '#0d9b5b90'}]}
+              style={[styles.brnContainer, {backgroundColor: '#41b48090'}]}
               disabled={true}>
               <Text style={styles.price}>Product Available In Cart</Text>
             </TouchableOpacity>
-          ) : (
+          ) : response.loading == false ? (
             <TouchableOpacity
               style={styles.brnContainer}
               onPress={() => {
                 dispatch(Cart_Data_Add(iteData._id));
               }}>
+              <Text style={styles.price}>Add To Cart</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={[styles.brnContainer, {backgroundColor: '#0d9b5b90'}]}
+              disabled={true}>
               <Text style={styles.price}>Add To Cart</Text>
             </TouchableOpacity>
           )}
