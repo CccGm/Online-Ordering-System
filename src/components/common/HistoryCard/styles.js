@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
@@ -6,8 +7,8 @@ export default styles = StyleSheet.create({
     marginTop: 15,
     height: 150,
     elevation: 8,
-    shadowColor: '#370247',
-    backgroundColor: '#efefee',
+    shadowColor: COLORS.marun,
+    backgroundColor: COLORS.whiteefe,
     flexDirection: 'row',
     padding: 10,
     borderRadius: 18,
@@ -28,11 +29,11 @@ export default styles = StyleSheet.create({
   textHeader: {
     fontSize: 22,
     marginTop: 8,
-    color: '#000000cc',
+    color: COLORS.blackaa,
     fontWeight: 'bold',
   },
   text: {
-    color: 'grey',
+    color: COLORS.grey,
     fontSize: 18,
     // marginTop: 5,
   },

@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {CART} from '../../constants/routeName';
 import {useSelector} from 'react-redux';
 import {TEXT_WELCOME} from '../../constants/strings';
+import {COLORS} from '../../assets/theme/colors';
 
 const DashboardComponent = () => {
   const productData = useSelector(state => state.GetProductReducer);
@@ -61,7 +62,7 @@ const DashboardComponent = () => {
             <Icon
               name="shopping-cart"
               size={24}
-              color={'#ffffff'}
+              color={COLORS.white}
               style={{position: 'absolute'}}
             />
             <Text style={styles.iconText}>{cartData.data.length}</Text>

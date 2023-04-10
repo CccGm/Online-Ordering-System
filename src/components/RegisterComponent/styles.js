@@ -1,9 +1,10 @@
 import {Platform, StyleSheet} from 'react-native';
+import {COLORS} from '../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#009387',
+    backgroundColor: COLORS.aqua_Blue,
   },
   header: {
     justifyContent: 'flex-end',
@@ -12,19 +13,19 @@ export default styles = StyleSheet.create({
   },
   footer: {
     flex: 3,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
   text_header: {
-    color: '#fff',
+    color: COLORS.white,
     fontWeight: 'bold',
     fontSize: 30,
   },
   text_footer: {
-    color: '#05375a',
+    color: COLORS.dark_Blue,
     fontSize: 16,
     marginTop: 5,
   },
@@ -32,14 +33,14 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
+    borderBottomColor: COLORS.whitef2,
     paddingBottom: 5,
   },
   textInput: {
     flex: 1,
     marginTop: Platform.OS == 'ios' ? 0 : -12,
     paddingLeft: 10,
-    color: '#05375a',
+    color: COLORS.dark_Blue,
   },
   button: {
     alignItems: 'center',

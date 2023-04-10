@@ -11,8 +11,8 @@ import {
 import {
   TEXT_ALERT,
   TEXT_DATA_NOT_REMOVE_IN_FAVORITE,
-  TEXT_DATA_REMOVE_IN_FAVORITE,
 } from '../../../constants/strings';
+import {COLORS} from '../../../assets/theme/colors';
 
 const LikeProduct = props => {
   const dispatch = useDispatch();
@@ -44,14 +44,14 @@ const LikeProduct = props => {
           style={[
             styles.text,
             {
-              color: '#000000cc',
+              color: COLORS.transparent,
               fontWeight: 'bold',
             },
           ]}
           numberOfLines={1}>
           {props.item.productDetails.title}
         </Text>
-        <Text style={[styles.text, {color: 'grey', fontSize: 18}]}>
+        <Text style={[styles.text, {color: COLORS.blackaa, fontSize: 18}]}>
           {'\u20A8'} : {props.item.productDetails.price}
         </Text>
         <TouchableOpacity
@@ -63,7 +63,7 @@ const LikeProduct = props => {
             dispatch(Favorite_Data_Remove(props.item._id));
           }}>
           <View style={styles.iconContainer}>
-            <Icon name={'heart'} size={25} color={'#ff0000'} />
+            <Icon name={'heart'} size={25} color={COLORS.red} />
           </View>
         </TouchableOpacity>
       </View>

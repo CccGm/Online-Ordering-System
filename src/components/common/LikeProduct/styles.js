@@ -1,16 +1,17 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
     width: '100%',
     marginVertical: 10,
     height: 150,
-    backgroundColor: '#efefee',
+    backgroundColor: COLORS.whiteefe,
     flexDirection: 'row',
     padding: 10,
     borderRadius: 15,
     elevation: 8,
-    shadowColor: '#370247',
+    shadowColor: COLORS.marun,
   },
   imageContainer: {
     width: 125,
@@ -29,7 +30,7 @@ export default styles = StyleSheet.create({
     marginTop: 10,
   },
   iconContainer: {
-    backgroundColor: 'rgba(245,42,42,0.2)',
+    backgroundColor: COLORS.lightRed,
     width: 35,
     height: 35,
     justifyContent: 'center',

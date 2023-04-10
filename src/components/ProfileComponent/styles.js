@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
   },
   userInfoSection: {
     paddingHorizontal: 30,
@@ -23,9 +24,9 @@ export default styles = StyleSheet.create({
     marginBottom: 10,
   },
   infoBoxWrapper: {
-    borderBottomColor: '#dddddd',
+    borderBottomColor: COLORS.whiteddd,
     borderBottomWidth: 1,
-    borderTopColor: '#dddddd',
+    borderTopColor: COLORS.whiteddd,
     borderTopWidth: 1,
     flexDirection: 'row',
     height: 100,
@@ -42,7 +43,7 @@ export default styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   menuItemText: {
-    color: '#777777',
+    color: COLORS.gery77,
     marginLeft: 20,
     fontWeight: '600',
     fontSize: 16,

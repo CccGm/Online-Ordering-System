@@ -1,13 +1,15 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
-    width: '100%',
-    marginTop: 15,
+    marginTop: 8,
+    marginBottom: 8,
+    marginHorizontal: 10,
     height: 150,
-    elevation: 8,
-    shadowColor: '#370247',
-    backgroundColor: '#efefee',
+    elevation: 5,
+    shadowColor: COLORS.lightMarunS,
+    backgroundColor: COLORS.whiteefe,
     flexDirection: 'row',
     padding: 10,
     borderRadius: 15,
@@ -35,7 +37,7 @@ export default styles = StyleSheet.create({
     marginTop: 10,
   },
   borderBtn: {
-    borderColor: 'grey',
+    borderColor: COLORS.grey,
     borderRadius: 5,
     borderWidth: 1,
     height: 40,

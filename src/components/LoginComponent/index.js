@@ -24,12 +24,14 @@ import {
   TEXT_ENTER_EMAIL,
   TEXT_ENTER_PASSWORD,
   TEXT_ENTER_VALIDE_EMAIL,
+  TEXT_FORGOT_PASSWORD,
   TEXT_PLEASE_ENTER_EMAIL,
   TEXT_PLEASE_ENTER_PASSWORD,
   TEXT_SIGN_IN,
   TEXT_SIGN_UP,
   TEXT_WELCOME_BACK,
 } from '../../constants/strings';
+import {COLORS} from '../../assets/theme/colors';
 
 const LoginComponent = () => {
   const {navigate} = useNavigation();
@@ -75,7 +77,7 @@ const LoginComponent = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <StatusBar backgroundColor={COLORS.aqua_Blue} barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>{TEXT_WELCOME_BACK}</Text>
       </View>
@@ -83,7 +85,7 @@ const LoginComponent = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.text_footer}>{TEXT_EMAIL}</Text>
           <View style={styles.action}>
-            <FontAwesome name={'user-o'} color="#05375a" size={20} />
+            <FontAwesome name={'user-o'} color={COLORS.dark_Blue} size={20} />
             <TextInput
               placeholder={TEXT_ENTER_EMAIL}
               style={styles.textInput}
@@ -94,7 +96,7 @@ const LoginComponent = () => {
           </View>
           <Text style={[styles.text_footer, {marginTop: 35}]}>Password</Text>
           <View style={styles.action}>
-            <Feather name={'lock'} color="#05375a" size={20} />
+            <Feather name={'lock'} color={COLORS.dark_Blue} size={20} />
             <TextInput
               placeholder={TEXT_ENTER_PASSWORD}
               secureTextEntry={data.secureTextEntry ? true : false}
@@ -104,17 +106,17 @@ const LoginComponent = () => {
             />
             <TouchableOpacity onPress={() => updateSecurityTextEntry()}>
               {data.secureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
+                <Feather name="eye-off" color={COLORS.grey} size={20} />
               ) : (
-                <Feather name="eye" color="grey" size={20} />
+                <Feather name="eye" color={COLORS.grey} size={20} />
               )}
             </TouchableOpacity>
           </View>
           <TouchableOpacity
             onPress={() => navigate(FORGOTPASSWORD)}
             style={{marginTop: 15, alignItems: 'flex-end', paddingRight: 10}}>
-            <Text style={{fontSize: 16, color: '#009387'}}>
-              Forgot Password !
+            <Text style={{fontSize: 16, color: COLORS.aqua_Blue}}>
+              {TEXT_FORGOT_PASSWORD}
             </Text>
           </TouchableOpacity>
           <View style={styles.button}>
@@ -122,9 +124,9 @@ const LoginComponent = () => {
               style={styles.signIn}
               onPress={() => Submit_LoginData()}>
               <LinearGradient
-                colors={['#08d4c4', '#01ab9d']}
+                colors={[COLORS.btn_linear_1_up, COLORS.btn_linear_2_down]}
                 style={styles.signIn}>
-                <Text style={[styles.textSign, {color: '#fff'}]}>
+                <Text style={[styles.textSign, {color: COLORS.white}]}>
                   {TEXT_SIGN_IN}
                 </Text>
               </LinearGradient>
@@ -133,9 +135,13 @@ const LoginComponent = () => {
               onPress={() => navigate(REGISTER)}
               style={[
                 styles.signIn,
-                {borderColor: '#009387', marginTop: 15, borderWidth: 1},
+                {
+                  borderColor: COLORS.aqua_Blue,
+                  marginTop: 15,
+                  borderWidth: 1,
+                },
               ]}>
-              <Text style={[styles.textSign, {color: '#009387'}]}>
+              <Text style={[styles.textSign, {color: COLORS.aqua_Blue}]}>
                 {TEXT_SIGN_UP}
               </Text>
             </TouchableOpacity>

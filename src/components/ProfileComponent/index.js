@@ -12,10 +12,9 @@ import {
   TEXT_HISTORY_DATA,
   TEXT_LOG_OUT,
   TEXT_SETTING,
-  TEXT_SHARE_YOUR_FRIEND,
-  TEXT_SUPPORT,
   TEXT_YOUR_FAVORITE_ITEM,
 } from '../../constants/strings';
+import {COLORS} from '../../assets/theme/colors';
 
 const ProfileComponent = () => {
   const {navigate} = useNavigation();
@@ -57,20 +56,20 @@ const ProfileComponent = () => {
       </View>
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" size={20} color={'#777777'} />
-          <Text style={{color: '#777777', marginLeft: 20}}>
+          <Icon name="map-marker-radius" size={20} color={COLORS.gery77} />
+          <Text style={{color: COLORS.gery77, marginLeft: 20}}>
             Ahmedabad , India
           </Text>
         </View>
         <View style={styles.row}>
-          <Icon name="phone" size={20} color={'#777777'} />
-          <Text style={{color: '#777777', marginLeft: 20}}>
+          <Icon name="phone" size={20} color={COLORS.gery77} />
+          <Text style={{color: COLORS.gery77, marginLeft: 20}}>
             {userData.Mo_No}
           </Text>
         </View>
         <View style={styles.row}>
-          <Icon name="email" size={20} color={'#777777'} />
-          <Text style={{color: '#777777', marginLeft: 20}}>
+          <Icon name="email" size={20} color={COLORS.gery77} />
+          <Text style={{color: COLORS.gery77, marginLeft: 20}}>
             {userData.Email}
           </Text>
         </View>
@@ -96,7 +95,7 @@ const ProfileComponent = () => {
             navigate(LIKE);
           }}>
           <View style={styles.menuItem}>
-            <Icon name={'heart-outline'} color={'#FF6347'} size={25} />
+            <Icon name={'heart-outline'} color={COLORS.orange47} size={25} />
             <Text style={styles.menuItemText}>{TEXT_YOUR_FAVORITE_ITEM}</Text>
           </View>
         </TouchableRipple>
@@ -105,7 +104,7 @@ const ProfileComponent = () => {
             navigate(HISTORY);
           }}>
           <View style={styles.menuItem}>
-            <Icon name={'history'} color={'#FF6347'} size={25} />
+            <Icon name={'history'} color={COLORS.orange47} size={25} />
             <Text style={styles.menuItemText}>{TEXT_HISTORY_DATA}</Text>
           </View>
         </TouchableRipple>
@@ -114,7 +113,11 @@ const ProfileComponent = () => {
             navigate(CHANGEPASSWORD);
           }}>
           <View style={styles.menuItem}>
-            <Icon name={'account-check-outline'} color={'#FF6347'} size={25} />
+            <Icon
+              name={'account-check-outline'}
+              color={COLORS.orange47}
+              size={25}
+            />
             <Text style={styles.menuItemText}>{TEXT_CHANGE_PASSWORD}</Text>
           </View>
         </TouchableRipple>
@@ -122,7 +125,7 @@ const ProfileComponent = () => {
           <View style={styles.menuItem}>
             <Icon
               name={'account-settings-outline'}
-              color={'#FF6347'}
+              color={COLORS.orange47}
               size={25}
             />
             <Text style={styles.menuItemText}>{TEXT_SETTING}</Text>
@@ -133,7 +136,7 @@ const ProfileComponent = () => {
             dispatch(setLogout());
           }}>
           <View style={styles.menuItem}>
-            <Icon name={'logout'} color={'#FF6347'} size={25} />
+            <Icon name={'logout'} color={COLORS.orange47} size={25} />
             <Text style={styles.menuItemText}>{TEXT_LOG_OUT}</Text>
           </View>
         </TouchableRipple>

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   iconContainer: {
@@ -17,13 +18,13 @@ export default styles = StyleSheet.create({
     height: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ff0000dd',
+    backgroundColor: COLORS.red,
     borderRadius: 30,
     marginBottom: 18,
     marginLeft: 12,
   },
   iconText: {
-    color: '#fff',
+    color: COLORS.white,
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -40,18 +41,17 @@ export default styles = StyleSheet.create({
   },
   detailsContainer: {
     flex: 0.55,
-    backgroundColor: '#99999930',
+    backgroundColor: COLORS.drakGrey90,
     marginTop: 30,
     borderRadius: 20,
   },
   text: {
-    color: '#000',
+    color: COLORS.transparent,
     fontSize: 22,
     fontWeight: 'bold',
   },
   titleCOntainer: {
-    backgroundColor: '#0d9b5bcc',
-
+    backgroundColor: COLORS.darkGreencc,
     height: 40,
     borderTopLeftRadius: 25,
     borderBottomLeftRadius: 25,
@@ -66,11 +66,10 @@ export default styles = StyleSheet.create({
   },
   price: {
     fontSize: 18,
-    color: '#fff',
+    color: COLORS.white,
     marginHorizontal: 15,
   },
   borderBtn: {
-    borderColor: 'grey',
     borderRadius: 5,
     borderWidth: 1,
     height: 40,
@@ -89,6 +88,6 @@ export default styles = StyleSheet.create({
     height: 50,
     marginTop: 30,
     borderRadius: 30,
-    backgroundColor: '#0d9b5bcc',
+    backgroundColor: COLORS.darkGreencc,
   },
 });

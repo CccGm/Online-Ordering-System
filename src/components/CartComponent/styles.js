@@ -1,15 +1,16 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10,
     flex: 1,
   },
   priceContainer: {
     justifyContent: 'center',
+    marginHorizontal: 10,
   },
   price: {
-    backgroundColor: '#bbb3b3a1',
+    backgroundColor: COLORS.info,
     padding: 5,
     paddingHorizontal: 15,
     flexDirection: 'row',
@@ -23,18 +24,18 @@ export default styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#346910ff',
+    backgroundColor: COLORS.greenff,
     borderRadius: 25,
     marginVertical: 8,
     paddingHorizontal: 50,
   },
   text: {
-    color: '#fff',
+    color: COLORS.white,
     fontSize: 20,
   },
   textTotal: {
     fontSize: 22,
-    color: '#000000da',
+    color: COLORS.transparent,
     fontWeight: 'bold',
   },
 });

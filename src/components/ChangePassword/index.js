@@ -29,8 +29,8 @@ import {
   TEXT_NEW_PASSWORD,
   TEXT_WARNING,
 } from '../../constants/strings';
-import {LOGIN} from '../../constants/routeName';
 import {setLogout} from '../../redux/action/Actions';
+import {COLORS} from '../../assets/theme/colors';
 
 const ChangePassword = () => {
   const navigation = useNavigation();
@@ -45,11 +45,6 @@ const ChangePassword = () => {
   useEffect(() => {
     if (chagePass.data.status == 1 && chagePass.loading == false) {
       dispatch(setLogout());
-      ToastAndroid.show(
-        'Password Change Successfully',
-        ToastAndroid.SHORT,
-        ToastAndroid.BOTTOM,
-      );
       dispatch(Remove_Change_Password_data());
     }
   }, [chagePass]);
@@ -91,14 +86,14 @@ const ChangePassword = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <StatusBar backgroundColor={COLORS.aqua_Blue} barStyle="light-content" />
       <View style={styles.header}>
-        <Text style={styles.text_header}>Change Password !</Text>
+        <Text style={styles.text_header}>{TEXT_CHANGE_PASSWORD}</Text>
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         <Text style={styles.text_footer}>{TEXT_NEW_PASSWORD}</Text>
         <View style={styles.action}>
-          <Feather name={'lock'} color="#05375a" size={20} />
+          <Feather name={'lock'} color={COLORS.dark_Blue} size={20} />
           <TextInput
             placeholder={TEXT_NEW_PASSWORD}
             style={styles.textInput}
@@ -110,7 +105,7 @@ const ChangePassword = () => {
           {TEXT_CONFIRM_PASSWORD}
         </Text>
         <View style={styles.action}>
-          <Feather name={'lock'} color="#05375a" size={20} />
+          <Feather name={'lock'} color={COLORS.dark_Blue} size={20} />
           <TextInput
             placeholder={TEXT_CONFIRM_PASSWORD}
             secureTextEntry={data.secureTextEntry ? true : false}
@@ -132,9 +127,9 @@ const ChangePassword = () => {
             style={styles.signIn}
             onPress={() => Submit_LoginData()}>
             <LinearGradient
-              colors={['#08d4c4', '#01ab9d']}
+              colors={[COLORS.btn_linear_1_up, COLORS.btn_linear_2_down]}
               style={styles.signIn}>
-              <Text style={[styles.textSign, {color: '#fff'}]}>
+              <Text style={[styles.textSign, {color: COLORS.white}]}>
                 {TEXT_CHANGE_PASSWORD}
               </Text>
             </LinearGradient>
@@ -143,9 +138,9 @@ const ChangePassword = () => {
             onPress={() => navigation.goBack()}
             style={[
               styles.signIn,
-              {borderColor: '#009387', marginTop: 15, borderWidth: 1},
+              {borderColor: COLORS.aqua_Blue, marginTop: 15, borderWidth: 1},
             ]}>
-            <Text style={[styles.textSign, {color: '#009387'}]}>
+            <Text style={[styles.textSign, {color: COLORS.aqua_Blue}]}>
               {TEXT_GO_BACK}
             </Text>
           </TouchableOpacity>

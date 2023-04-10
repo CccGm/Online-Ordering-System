@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  ToastAndroid,
 } from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -19,6 +18,15 @@ import {
   Cart_Data_Get,
   Remove_Data_In_Add,
 } from '../../../redux/action/CartAction';
+import {
+  TEXT_ABOUT,
+  TEXT_ADD_TO_CART,
+  TEXT_ALERT,
+  TEXT_LOADING,
+  TEXT_PRODUCT_AVAILABLE_IN_CART,
+  TEXT_PRODUCT_NOT_ADDED_INTO_CART,
+} from '../../../constants/strings';
+import {COLORS} from '../../../assets/theme/colors';
 
 const ProductCardDetails = props => {
   const navigation = useNavigation();
@@ -33,13 +41,8 @@ const ProductCardDetails = props => {
         navigation.navigate(CART);
         dispatch(Remove_Data_In_Add());
         dispatch(Cart_Data_Get());
-        ToastAndroid.show(
-          'Data Add Into Cart',
-          ToastAndroid.BOTTOM,
-          ToastAndroid.SHORT,
-        );
       } else if (response.status == 0) {
-        Alert.alert('Alert', 'Data not Add in to Cart');
+        Alert.alert(TEXT_ALERT, TEXT_PRODUCT_NOT_ADDED_INTO_CART);
         dispatch(Remove_Data_In_Add());
       }
     }
@@ -59,12 +62,13 @@ const ProductCardDetails = props => {
   });
 
   return (
-    <SafeAreaView style={{flex: 1, elevation: 8, shadowColor: '#5d296b'}}>
+    <SafeAreaView
+      style={{flex: 1, elevation: 8, shadowColor: COLORS.lightMarun}}>
       <View style={styles.iconContainer}>
         <Icon
           name={'arrow-back'}
           size={28}
-          color={'#000'}
+          color={COLORS.transparent}
           onPress={() => navigation.goBack()}
         />
         <TouchableOpacity
@@ -73,7 +77,7 @@ const ProductCardDetails = props => {
           <Icon
             name="shopping-cart"
             size={28}
-            color={'#000'}
+            color={COLORS.transparent}
             style={{position: 'absolute'}}
           />
           <View style={styles.iconView}>
@@ -100,10 +104,10 @@ const ProductCardDetails = props => {
           </View>
         </View>
         <View style={{paddingHorizontal: 20, marginTop: 10}}>
-          <Text style={[styles.text, {fontSize: 20}]}>About</Text>
+          <Text style={[styles.text, {fontSize: 20}]}>{TEXT_ABOUT}</Text>
           <Text
             style={{
-              color: 'grey',
+              color: COLORS.blackaa,
               fontSize: 16,
               lineHeight: 22,
               marginTop: 20,
@@ -112,9 +116,12 @@ const ProductCardDetails = props => {
           </Text>
           {InCart == iteData._id ? (
             <TouchableOpacity
-              style={[styles.brnContainer, {backgroundColor: '#41b48090'}]}
+              style={[
+                styles.brnContainer,
+                {backgroundColor: COLORS.lightGreen},
+              ]}
               disabled={true}>
-              <Text style={styles.price}>Product Available In Cart</Text>
+              <Text style={styles.price}>{TEXT_PRODUCT_AVAILABLE_IN_CART}</Text>
             </TouchableOpacity>
           ) : response.loading == false ? (
             <TouchableOpacity
@@ -122,13 +129,16 @@ const ProductCardDetails = props => {
               onPress={() => {
                 dispatch(Cart_Data_Add(iteData._id));
               }}>
-              <Text style={styles.price}>Add To Cart</Text>
+              <Text style={styles.price}>{TEXT_ADD_TO_CART}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              style={[styles.brnContainer, {backgroundColor: '#0d9b5b90'}]}
+              style={[
+                styles.brnContainer,
+                {backgroundColor: COLORS.darkGreen90},
+              ]}
               disabled={true}>
-              <Text style={styles.price}>Add To Cart</Text>
+              <Text style={styles.price}>{TEXT_LOADING}</Text>
             </TouchableOpacity>
           )}
         </View>

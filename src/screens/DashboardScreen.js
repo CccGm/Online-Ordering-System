@@ -8,6 +8,7 @@ import {GET_USERDATA} from '../constants/actionTypes';
 import {Cart_Data_Get} from '../redux/action/CartAction';
 import {Favorite_Data_Get} from '../redux/action/FavoriteAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {COLORS} from '../assets/theme/colors';
 
 const DashboardScreen = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const DashboardScreen = () => {
   }, []);
 
   return (
-    <View style={{backgroundColor: '#fff', flex: 1}}>
+    <View style={{backgroundColor: COLORS.white, flex: 1}}>
       {productData.loading != false ? (
         <ActivityLoader />
       ) : (

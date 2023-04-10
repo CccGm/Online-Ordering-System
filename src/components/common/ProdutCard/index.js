@@ -11,6 +11,12 @@ import {
   Favorite_Data_Add,
   Remove_Favorite_Data_In_Add,
 } from '../../../redux/action/FavoriteAction';
+import {
+  TEXT_ALERT,
+  TEXT_DATA_NOT_ADDED_INTO_FAVORITE,
+  TEXT_PRODUCT_AVAILABLE_IN_FAVORITE,
+} from '../../../constants/strings';
+import {COLORS} from '../../../assets/theme/colors';
 
 const ProductCard = props => {
   const dispatch = useDispatch();
@@ -34,10 +40,10 @@ const ProductCard = props => {
   useEffect(() => {
     if (response.loading == false) {
       if (response.status == 1) {
-        dispatch(Remove_Favorite_Data_In_Add());
         dispatch(Favorite_Data_Get());
+        dispatch(Remove_Favorite_Data_In_Add());
       } else if (response.status == 0) {
-        Alert.alert('Alert', 'Data not Add in to Favorite');
+        Alert.alert(TEXT_ALERT, TEXT_DATA_NOT_ADDED_INTO_FAVORITE);
         dispatch(Remove_Favorite_Data_In_Add());
       }
     }
@@ -53,16 +59,16 @@ const ProductCard = props => {
         <TouchableOpacity
           style={{alignItems: 'flex-end'}}
           onPress={() => {
-            Alert.alert('Warn', 'Product Already in Wish List');
+            Alert.alert(TEXT_WARN, TEXT_PRODUCT_AVAILABLE_IN_FAVORITE);
           }}>
           <View
             style={[
               styles.iconContainer,
               {
-                backgroundColor: 'rgba(245,42,42,0.2)',
+                backgroundColor: COLORS.lightRed,
               },
             ]}>
-            <Icon name={'heart'} size={18} color={'red'} />
+            <Icon name={'heart'} size={18} color={COLORS.red} />
           </View>
         </TouchableOpacity>
       ) : (
@@ -76,10 +82,10 @@ const ProductCard = props => {
             style={[
               styles.iconContainer,
               {
-                backgroundColor: 'rgba(0,0,0,0.2)',
+                backgroundColor: COLORS.transparentFull,
               },
             ]}>
-            <Icon name={'heart'} size={18} color={'black'} />
+            <Icon name={'heart'} size={18} color={COLORS.transparent} />
           </View>
         </TouchableOpacity>
       )}
@@ -101,7 +107,7 @@ const ProductCard = props => {
           {'\u20A8'} : {props.card.price}
         </Text>
         <View style={styles.plusContainer}>
-          <FontAwesome5 name={'plus'} size={18} color={'#dfeadc'} />
+          <FontAwesome5 name={'plus'} size={18} color={COLORS.whiteefe} />
         </View>
       </View>
     </TouchableOpacity>

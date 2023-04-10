@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native-animatable';
 import * as Animatable from 'react-native-animatable';
+import {COLORS} from '../../../assets/theme/colors';
 const NoDataFound = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -14,13 +15,13 @@ const NoDataFound = () => {
         />
         <Animatable.Text
           animation="fadeInUpBig"
-          style={{color: '#000000', fontSize: 20, fontWeight: 'bold'}}>
+          style={{color: COLORS.transparent, fontSize: 20, fontWeight: 'bold'}}>
           Oops! Your bag is empty!
         </Animatable.Text>
         <Animatable.Text
           animation="fadeInUpBig"
           style={{
-            color: '#00000060',
+            color: COLORS.transparent,
             fontSize: 14,
             fontWeight: 'bold',
             marginTop: 10,

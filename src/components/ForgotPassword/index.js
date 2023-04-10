@@ -25,6 +25,7 @@ import {
   TEXT_GO_BACK,
   TEXT_SEND_OTP,
 } from '../../constants/strings';
+import {COLORS} from '../../assets/theme/colors';
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
@@ -51,14 +52,14 @@ const ForgotPassword = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <StatusBar backgroundColor={COLORS.aqua_Blue} barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>Forgot Password !</Text>
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
-          <FontAwesome name={'user-o'} color="#05375a" size={20} />
+          <FontAwesome name={'user-o'} color={COLORS.dark_Blue} size={20} />
           <TextInput
             placeholder={TEXT_ENTER_EMAIL}
             style={styles.textInput}
@@ -72,9 +73,9 @@ const ForgotPassword = () => {
         <View style={styles.button}>
           <TouchableOpacity style={styles.signIn} onPress={() => Submit_Data()}>
             <LinearGradient
-              colors={['#08d4c4', '#01ab9d']}
+              colors={[COLORS.btn_linear_1_up, COLORS.btn_linear_2_down]}
               style={styles.signIn}>
-              <Text style={[styles.textSign, {color: '#fff'}]}>
+              <Text style={[styles.textSign, {color: COLORS.white}]}>
                 {TEXT_SEND_OTP}
               </Text>
             </LinearGradient>
@@ -83,9 +84,9 @@ const ForgotPassword = () => {
             onPress={() => navigation.goBack()}
             style={[
               styles.signIn,
-              {borderColor: '#009387', marginTop: 15, borderWidth: 1},
+              {borderColor: COLORS.aqua_Blue, marginTop: 15, borderWidth: 1},
             ]}>
-            <Text style={[styles.textSign, {color: '#009387'}]}>
+            <Text style={[styles.textSign, {color: COLORS.aqua_Blue}]}>
               {TEXT_GO_BACK}
             </Text>
           </TouchableOpacity>

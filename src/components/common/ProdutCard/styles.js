@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {Dimensions} from 'react-native';
+import {COLORS} from '../../../assets/theme/colors';
 
 const width = Dimensions.get('screen').width / 2 - 30;
 
@@ -10,7 +11,7 @@ export default styles = StyleSheet.create({
     width: width,
     height: 220,
     marginBottom: 15,
-    backgroundColor: '#efefee',
+    backgroundColor: COLORS.whiteefe,
     borderRadius: 10,
   },
   iconContainer: {
@@ -31,7 +32,7 @@ export default styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold',
-    color: '#000',
+    color: COLORS.transparent,
     fontSize: 17,
     marginTop: 10,
   },
@@ -42,7 +43,7 @@ export default styles = StyleSheet.create({
     paddingRight: 10,
   },
   plusContainer: {
-    backgroundColor: '#0d9b5bcc',
+    backgroundColor: COLORS.darkGreen90,
     width: 28,
     height: 28,
     alignItems: 'center',

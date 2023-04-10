@@ -7,12 +7,13 @@ import {Favorite_Data_Get} from '../redux/action/FavoriteAction';
 import ActivityLoader from '../components/common/ActivityLoader';
 import NoDataFound from '../components/common/NoDataFound';
 import {TEXT_LIKE_PRODUCT} from '../constants/strings';
+import {COLORS} from '../assets/theme/colors';
 
 const LikeScreen = () => {
   const likeData = useSelector(state => state.GetFavoriteReducer);
 
   return (
-    <View style={{backgroundColor: '#fff', flex: 1}}>
+    <View style={{backgroundColor: COLORS.white, flex: 1}}>
       <Header title={TEXT_LIKE_PRODUCT} hideBackBtn={false} />
       {likeData.loading != false ? (
         <ActivityLoader />

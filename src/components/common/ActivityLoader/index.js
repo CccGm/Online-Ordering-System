@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, ActivityIndicator} from 'react-native';
+import {COLORS} from '../../../assets/theme/colors';
 
 const ActivityLoader = () => (
   <View
@@ -7,7 +8,7 @@ const ActivityLoader = () => (
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#99999920',
+      backgroundColor: COLORS.transparentFull,
     }}>
     <View
       style={{
@@ -16,10 +17,10 @@ const ActivityLoader = () => (
         justifyContent: 'center',
         height: 90,
 
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.white,
         borderRadius: 20,
       }}>
-      <ActivityIndicator size={50} color="#0202f379" />
+      <ActivityIndicator size={50} color={COLORS.blue} />
     </View>
   </View>
 );

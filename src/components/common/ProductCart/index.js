@@ -20,6 +20,7 @@ import {
   TEXT_PRODUCT_NOT_INCRESED,
   TEXT_PRODUCT_NOT_REMOVE,
 } from '../../../constants/strings';
+import {COLORS} from '../../../assets/theme/colors';
 
 const ProductCart = props => {
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ const ProductCart = props => {
           style={[
             styles.text,
             {
-              color: '#000000cc',
+              color: COLORS.transparent,
               fontWeight: 'bold',
             },
           ]}
@@ -85,7 +86,10 @@ const ProductCart = props => {
           {props.item.productDetails.title}
         </Text>
         <Text
-          style={[styles.text, {color: 'grey', fontSize: 18, marginTop: 5}]}>
+          style={[
+            styles.text,
+            {color: COLORS.blackaa, fontSize: 18, marginTop: 5},
+          ]}>
           {'\u20A8'} : {props.item.productDetails.price}
         </Text>
 
@@ -100,16 +104,23 @@ const ProductCart = props => {
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              style={[styles.borderBtn, {borderColor: '#99999950'}]}
+              style={[styles.borderBtn, {borderColor: COLORS.drakGrey}]}
               disabled={true}>
-              <Text style={[styles.boderBtnText, {color: '#00000090'}]}>-</Text>
+              <Text
+                style={[styles.boderBtnText, {color: COLORS.transparentBlack}]}>
+                -
+              </Text>
             </TouchableOpacity>
           )}
 
           <Text
             style={[
               styles.boderBtnText,
-              {marginHorizontal: 12, fontWeight: 'bold', color: '#000000aa'},
+              {
+                marginHorizontal: 12,
+                fontWeight: 'bold',
+                color: COLORS.transparent,
+              },
             ]}>
             {props.item.quantity}
           </Text>
@@ -123,9 +134,11 @@ const ProductCart = props => {
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              style={[styles.borderBtn, {borderColor: '#99999950'}]}
+              style={[styles.borderBtn, {borderColor: COLORS.drakGrey}]}
               disabled={true}>
-              <Text style={[styles.boderBtnText, {color: '#00000090'}]}>+</Text>
+              <Text style={[styles.boderBtnText, {color: COLORS.transparent}]}>
+                +
+              </Text>
             </TouchableOpacity>
           )}
         </View>
@@ -140,7 +153,7 @@ const ProductCart = props => {
           onPress={() => {
             dispatch(Cart_Data_Remove(props.item._id));
           }}>
-          <Icon name={'close'} size={25} color={'#ff0000aa'} />
+          <Icon name={'close'} size={25} color={COLORS.red} />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
@@ -150,7 +163,7 @@ const ProductCart = props => {
             top: 10,
           }}
           disabled={true}>
-          <Icon name={'close'} size={25} color={'#ff000050'} />
+          <Icon name={'close'} size={25} color={COLORS.lightRed} />
         </TouchableOpacity>
       )}
     </View>

@@ -40,6 +40,7 @@ import {
   TEXT_VERIFICATION,
   TEXT_VERIFY,
 } from '../../constants/strings';
+import {COLORS} from '../../assets/theme/colors';
 
 const {Value, Text: AnimatedText} = Animated;
 
@@ -172,7 +173,7 @@ const OTPForgotPassword = () => {
   return (
     <SafeAreaView style={styles.root}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon name={'arrow-back'} size={25} color={'#000000aa'} />
+        <Icon name={'arrow-back'} size={25} color={COLORS.blackaa} />
       </TouchableOpacity>
       <Text style={styles.title}>{TEXT_VERIFICATION}</Text>
       <Image style={styles.icon} source={source} />
@@ -207,7 +208,8 @@ const OTPForgotPassword = () => {
           <Text
             style={{
               fontSize: 16,
-              color: seconds > 0 || minutes > 0 ? '#cdd2d8' : '#009387',
+              color:
+                seconds > 0 || minutes > 0 ? COLORS.cream : COLORS.aqua_Blue,
             }}>
             {TEXT_RESEND_OTP}
           </Text>
@@ -218,7 +220,7 @@ const OTPForgotPassword = () => {
           VerifyOtp();
         }}>
         <LinearGradient
-          colors={['#08d4c4', '#01ab9d']}
+          colors={[COLORS.btn_linear_1_up, COLORS.btn_linear_2_down]}
           style={styles.nextButton}>
           <Text style={styles.nextButtonText}>{TEXT_VERIFY}</Text>
         </LinearGradient>

@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {History_Data_Get} from '../redux/action/CompleteOrder';
 import NoDataFound from '../components/common/NoDataFound';
 import ActivityLoader from '../components/common/ActivityLoader';
+import {COLORS} from '../assets/theme/colors';
 
 const HistoryScreen = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const HistoryScreen = () => {
   }, []);
 
   return (
-    <View style={{backgroundColor: '#fff', flex: 1}}>
+    <View style={{backgroundColor: COLORS.white, flex: 1}}>
       <Header title={TEXT_COMPLETED_PRODUCT} hideBackBtn={false} />
       {historyData.loading != false ? (
         <ActivityLoader />

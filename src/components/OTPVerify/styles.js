@@ -1,10 +1,11 @@
 import {StyleSheet, Platform} from 'react-native';
+import {COLORS} from '../../assets/theme/colors';
 
 export const CELL_SIZE = 70;
 export const CELL_BORDER_RADIUS = 8;
-export const DEFAULT_CELL_BG_COLOR = '#fff';
-export const NOT_EMPTY_CELL_BG_COLOR = '#009387';
-export const ACTIVE_CELL_BG_COLOR = '#f7fafe';
+export const DEFAULT_CELL_BG_COLOR = COLORS.white;
+export const NOT_EMPTY_CELL_BG_COLOR = COLORS.aqua_Blue;
+export const ACTIVE_CELL_BG_COLOR = COLORS.whitef7;
 
 const styles = StyleSheet.create({
   codeFieldRoot: {
@@ -22,11 +23,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     borderRadius: CELL_BORDER_RADIUS,
-    color: '#009387',
-    backgroundColor: '#fff',
+    color: COLORS.aqua_Blue,
+    backgroundColor: COLORS.white,
 
     // IOS
-    shadowColor: '#000',
+    shadowColor: COLORS.blackaa,
     shadowOffset: {
       width: 0,
       height: 1,
@@ -43,11 +44,11 @@ const styles = StyleSheet.create({
   root: {
     minHeight: 800,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
   },
   title: {
     paddingTop: 20,
-    color: '#000',
+    color: COLORS.blackaa,
     fontSize: 25,
     fontWeight: '700',
     textAlign: 'center',
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     paddingTop: 30,
-    color: '#000',
+    color: COLORS.blackaa,
     textAlign: 'center',
   },
   nextButton: {
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   nextButtonText: {
     textAlign: 'center',
     fontSize: 20,
-    color: '#fff',
+    color: COLORS.white,
     fontWeight: '700',
   },
   resendContainer: {

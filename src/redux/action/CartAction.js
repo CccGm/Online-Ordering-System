@@ -23,7 +23,7 @@ import {
   TEXT_CART_DATA_NOT_ADD,
   TEXT_CART_DATA_NOT_GET,
   TEXT_ERROR,
-  TEXT_PRODUCT_INCRESED,
+  TEXT_PRODUCT_ADDED_INTO_CART,
   TEXT_PRODUCT_NOT_REMOVE,
   TEXT_PRODUCT_REMOVE,
 } from '../../constants/strings';
@@ -64,6 +64,11 @@ export const Cart_Data_Add = data => async dispatch => {
       )
       .then(response => {
         dispatch({type: CART_ADD_DATA_SUCCESS, payload: response});
+        ToastAndroid.show(
+          TEXT_PRODUCT_ADDED_INTO_CART,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
       });
   } catch (error) {
     Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_ADD);

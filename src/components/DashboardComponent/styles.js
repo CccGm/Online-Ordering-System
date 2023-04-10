@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingBottom: '38%',
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
   },
   welcomContainer: {
     marginTop: 20,
@@ -18,11 +19,11 @@ export default styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0d9b5baa',
+    backgroundColor: COLORS.darkGreenaa,
     borderRadius: 30,
   },
   iconText: {
-    color: '#000000cc',
+    color: COLORS.transparent,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -33,7 +34,7 @@ export default styles = StyleSheet.create({
   userText: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#0d9b5bcc',
+    color: COLORS.darkGreencc,
   },
   wlcome: {
     fontSize: 22,

@@ -18,12 +18,13 @@ import {
   verify_ForgotPassword_Otp,
 } from '../api';
 import axios from '../../helpers/axiosIntersepter';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   TEXT_ENTER_VALIDE_EMAIL,
   TEXT_ENTER_VALIDE_OTP,
   TEXT_ERROR,
+  TEXT_PASSWRD_CHANGE_SUCCESS,
   TEXT_PASSWRD_NOT_CHANGE,
 } from '../../constants/strings';
 
@@ -83,6 +84,11 @@ export const Change_Password = data => async dispatch => {
         )
         .then(result => {
           dispatch({type: CHANGE_PASSWORD_SUCCESS, payload: result.data});
+          ToastAndroid.show(
+            TEXT_PASSWRD_CHANGE_SUCCESS,
+            ToastAndroid.BOTTOM,
+            ToastAndroid.SHORT,
+          );
         });
     } catch (error) {
       Alert.alert(TEXT_ERROR, TEXT_PASSWRD_NOT_CHANGE);

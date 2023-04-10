@@ -11,12 +11,13 @@ import {
   TEXT_SIGN_IN_WITH_ACCOUNT,
   TEXT_SPLASH_SCREEN_STAY_CONNECTION,
 } from '../../constants/strings';
+import {COLORS} from '../../assets/theme/colors';
 
 const SplashComponent = () => {
   const {navigate} = useNavigation();
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
+      <StatusBar backgroundColor={COLORS.aqua_Blue} barStyle="light-content" />
       <View style={styles.header}>
         <Animatable.Image
           animation="bounceIn"
@@ -32,10 +33,10 @@ const SplashComponent = () => {
         <View style={styles.button}>
           <TouchableOpacity onPress={() => navigate(LOGIN)}>
             <LinearGradient
-              colors={['#08d4c4', '#01ab9d']}
+              colors={[COLORS.btn_linear_1_up, COLORS.btn_linear_2_down]}
               style={styles.signIn}>
               <Text style={styles.textSign}>{TEXT_GET_STARTED}</Text>
-              <Icon name="navigate-next" color="#fff" size={20} />
+              <Icon name="navigate-next" color={COLORS.white} size={20} />
             </LinearGradient>
           </TouchableOpacity>
         </View>

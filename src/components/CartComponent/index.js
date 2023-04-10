@@ -7,10 +7,15 @@ import {
   CheckOut_Data_Add,
   Remove_CheckOut_Data_Add,
 } from '../../redux/action/CompleteOrder';
-import {TEXT_CHECK_OUT, TEXT_TOTAL_PRICE} from '../../constants/strings';
+import {
+  TEXT_CHECK_OUT,
+  TEXT_LOADING,
+  TEXT_TOTAL_PRICE,
+} from '../../constants/strings';
 import {useNavigation} from '@react-navigation/native';
 import {Cart_Data_Get} from '../../redux/action/CartAction';
 import {THANKYOU} from '../../constants/routeName';
+import {COLORS} from '../../assets/theme/colors';
 
 const CartComponent = () => {
   const cartData = useSelector(state => state.GetCartReducer);
@@ -30,7 +35,7 @@ const CartComponent = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{flex: 1, marginVertical: 10}}>
+      <View style={{flex: 1}}>
         <FlatList
           data={cartData.data}
           showsVerticalScrollIndicator={false}
@@ -62,9 +67,9 @@ const CartComponent = () => {
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            style={[styles.button, {backgroundColor: '#34691090'}]}
+            style={[styles.button, {backgroundColor: COLORS.green80}]}
             disabled={true}>
-            <Text style={styles.text}>{TEXT_CHECK_OUT}</Text>
+            <Text style={styles.text}>{TEXT_LOADING}</Text>
           </TouchableOpacity>
         )}
       </View>

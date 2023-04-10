@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import {COLORS} from '../../../assets/theme/colors';
 
 const {height} = Dimensions.get('screen');
 const height_logo = height * 0.34;
@@ -6,7 +7,7 @@ const height_logo = height * 0.34;
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#009387',
+    backgroundColor: COLORS.aqua_Blue,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -16,7 +17,7 @@ export default styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingVertical: 50,

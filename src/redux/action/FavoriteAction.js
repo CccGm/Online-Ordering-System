@@ -68,6 +68,11 @@ export const Favorite_Data_Add = data => async dispatch => {
       )
       .then(response => {
         dispatch({type: ADD_FAVORITE_PRODUCT_SUCCESS, payload: response});
+        ToastAndroid.show(
+          TEXT_DATA_ADDED_INTO_FAVORITE,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
       });
   } catch (error) {
     Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_ADD);
