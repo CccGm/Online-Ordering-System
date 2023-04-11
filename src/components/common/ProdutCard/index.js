@@ -17,6 +17,7 @@ import {
   TEXT_PRODUCT_AVAILABLE_IN_FAVORITE,
 } from '../../../constants/strings';
 import {COLORS} from '../../../assets/theme/colors';
+import {TEXT_WARNING} from '../../../constants/strings';
 
 const ProductCard = props => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const ProductCard = props => {
         <TouchableOpacity
           style={{alignItems: 'flex-end'}}
           onPress={() => {
-            Alert.alert(TEXT_WARN, TEXT_PRODUCT_AVAILABLE_IN_FAVORITE);
+            Alert.alert(TEXT_WARNING, TEXT_PRODUCT_AVAILABLE_IN_FAVORITE);
           }}>
           <View
             style={[

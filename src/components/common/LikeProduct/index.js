@@ -13,10 +13,13 @@ import {
   TEXT_DATA_NOT_REMOVE_IN_FAVORITE,
 } from '../../../constants/strings';
 import {COLORS} from '../../../assets/theme/colors';
+import {PRODUCTDETAILS} from '../../../constants/routeName';
+import {useNavigation} from '@react-navigation/native';
 
 const LikeProduct = props => {
   const dispatch = useDispatch();
   const response = useSelector(state => state.RemoveFavoriteReducer);
+  const {navigate} = useNavigation();
 
   useEffect(() => {
     if (response.loading == false) {
@@ -31,7 +34,11 @@ const LikeProduct = props => {
   }, [response.loading == false]);
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        navigate(PRODUCTDETAILS, {data: props.item.productDetails});
+      }}>
       <View style={styles.imageContainer}>
         <Image
           source={{uri: props.item.productDetails.imageUrl}}
@@ -58,6 +65,7 @@ const LikeProduct = props => {
           style={{
             alignItems: 'flex-end',
             marginTop: 8,
+            marginLeft: 180,
           }}
           onPress={() => {
             dispatch(Favorite_Data_Remove(props.item._id));
@@ -67,7 +75,7 @@ const LikeProduct = props => {
           </View>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

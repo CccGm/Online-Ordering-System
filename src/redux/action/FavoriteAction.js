@@ -40,11 +40,6 @@ export const Favorite_Data_Get = data => async dispatch => {
       })
       .then(response => {
         dispatch({type: FAVORITE_PRODUCT_GET_SUCCESS, payload: response.data});
-        ToastAndroid.show(
-          TEXT_DATA_ADDED_INTO_FAVORITE,
-          ToastAndroid.BOTTOM,
-          ToastAndroid.SHORT,
-        );
       });
   } catch (error) {
     Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_GET);
