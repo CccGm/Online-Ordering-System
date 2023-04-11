@@ -7,7 +7,7 @@ export const COLORS = {
   danger: '#f44336cc',
   warning: '#ffb74dcc',
   success: '#4caf50cc',
-  info: '#b0bec5cc',
+  info: '#b0bec550',
   drakGrey: '#909090cc',
   drakGrey90: '#90909030',
   grey: '#adb5bdcc',
