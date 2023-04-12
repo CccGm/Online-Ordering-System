@@ -10,12 +10,7 @@ import ActivityLoader from '../components/common/ActivityLoader';
 import {COLORS} from '../assets/theme/colors';
 
 const HistoryScreen = () => {
-  const dispatch = useDispatch();
   const historyData = useSelector(state => state.GetHistoryDataReducer);
-
-  useEffect(() => {
-    dispatch(History_Data_Get());
-  }, []);
 
   return (
     <View

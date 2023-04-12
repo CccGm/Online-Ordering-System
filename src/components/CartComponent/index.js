@@ -5,6 +5,7 @@ import ProductCart from '../common/ProductCart';
 import styles from './styles';
 import {
   CheckOut_Data_Add,
+  History_Data_Get,
   Remove_CheckOut_Data_Add,
 } from '../../redux/action/CompleteOrder';
 import {
@@ -28,6 +29,7 @@ const CartComponent = () => {
       if (complete.status == 1) {
         navigation.navigate(THANKYOU);
         dispatch(Cart_Data_Get());
+        dispatch(History_Data_Get());
         dispatch(Remove_CheckOut_Data_Add());
       }
     }
