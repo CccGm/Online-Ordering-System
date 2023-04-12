@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-import {Text, View, SafeAreaView, TouchableOpacity} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+  RefreshControl,
+} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {TextInput} from 'react-native-paper';
 import ProductCard from '../common/ProdutCard';
@@ -7,9 +13,10 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
 import {CART} from '../../constants/routeName';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {TEXT_WELCOME} from '../../constants/strings';
 import {COLORS} from '../../assets/theme/colors';
+import {Product_Data} from '../../redux/action/DashBoardAction';
 
 const DashboardComponent = () => {
   const productData = useSelector(state => state.GetProductReducer);
@@ -19,15 +26,22 @@ const DashboardComponent = () => {
   const [filterData, setFilterData] = useState([]);
   const [masterData, setMasterData] = useState(productData.data);
   const [userData, setUserData] = useState({Name: null});
+  const [refreshing, setRefreshing] = useState(false);
+  const dispatch = useDispatch();
+  const {navigate} = useNavigation();
 
   useState(() => {
     UserData.then(res => {
       setUserData({...userData, Name: res.Name});
     });
   }, []);
-
-  console.log(userData.Name);
-  const {navigate} = useNavigation();
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      dispatch(Product_Data());
+      setRefreshing(false);
+    }, 1000);
+  }, []);
 
   const seatchFilterFunction = text => {
     if (text) {
@@ -82,6 +96,13 @@ const DashboardComponent = () => {
       </View>
 
       <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[COLORS.btn_linear_1_up, COLORS.btn_linear_2_down]}
+          />
+        }
         data={filterData.length ? filterData : masterData}
         numColumns={2}
         showsVerticalScrollIndicator={false}

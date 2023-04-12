@@ -1,5 +1,11 @@
-import React, {useEffect} from 'react';
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  RefreshControl,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ProductCart from '../common/ProductCart';
 import styles from './styles';
@@ -23,6 +29,7 @@ const CartComponent = () => {
   const complete = useSelector(state => state.CheckOutReducer);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     if (complete.loading == false) {
@@ -35,10 +42,25 @@ const CartComponent = () => {
     }
   }, [complete]);
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      dispatch(Cart_Data_Get());
+      setRefreshing(false);
+    }, 1000);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={{flex: 1}}>
         <FlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={[COLORS.btn_linear_1_up, COLORS.btn_linear_2_down]}
+            />
+          }
           data={cartData.data}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => <ProductCart item={item} />}

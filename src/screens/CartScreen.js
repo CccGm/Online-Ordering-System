@@ -11,14 +11,13 @@ const CartScreen = () => {
 
   return (
     <View style={{backgroundColor: COLORS.white, flex: 1}}>
-      {/* {cartData.loading != false ? (
+      {cartData.loading != false ? (
         <ActivityLoader />
       ) : cartData.data.length == 0 ? (
         <NoDataFound />
       ) : (
         <CartComponent />
-      )} */}
-      {cartData.data.length == 0 ? <NoDataFound /> : <CartComponent />}
+      )}
     </View>
   );
 };
