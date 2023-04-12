@@ -49,7 +49,7 @@ const CartComponent = () => {
             {TEXT_TOTAL_PRICE} :-
           </Text>
           <Text style={[styles.text, styles.textTotal]}>
-            {'\u20A8'} : {cartData.total}
+            {'\u20A8'} : {cartData.total.toFixed(2)}
           </Text>
         </View>
         {complete.loading == false ? (

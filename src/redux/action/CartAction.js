@@ -23,10 +23,13 @@ import {
   TEXT_CART_DATA_NOT_ADD,
   TEXT_CART_DATA_NOT_GET,
   TEXT_ERROR,
+  TEXT_PLEASE_RELOGIN,
   TEXT_PRODUCT_ADDED_INTO_CART,
   TEXT_PRODUCT_NOT_REMOVE,
   TEXT_PRODUCT_REMOVE,
+  TEXT_TOKEN_CHANGE,
 } from '../../constants/strings';
+import {setLogout} from './Actions';
 
 export const Cart_Data_Get = data => async dispatch => {
   dispatch({type: CART_DATA_LOADING});
@@ -42,8 +45,22 @@ export const Cart_Data_Get = data => async dispatch => {
         dispatch({type: CART_DATA_SUCCESS, payload: response.data});
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_GET);
-    dispatch({type: CART_DATA_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_GET);
+      dispatch({type: CART_DATA_FAUILER, payload: error});
+    }
   }
 };
 
@@ -71,8 +88,22 @@ export const Cart_Data_Add = data => async dispatch => {
         );
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_ADD);
-    dispatch({type: CART_ADD_DATA_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_ADD);
+      dispatch({type: CART_ADD_DATA_FAUILER, payload: error});
+    }
   }
 };
 
@@ -99,8 +130,22 @@ export const Cart_Data_Remove = data => async dispatch => {
         );
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_REMOVE);
-    dispatch({type: CART_REMOVE_DATA_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_REMOVE);
+      dispatch({type: CART_REMOVE_DATA_FAUILER, payload: error});
+    }
   }
 };
 

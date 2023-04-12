@@ -26,7 +26,10 @@ import {
   TEXT_ERROR,
   TEXT_PASSWRD_CHANGE_SUCCESS,
   TEXT_PASSWRD_NOT_CHANGE,
+  TEXT_PLEASE_RELOGIN,
+  TEXT_TOKEN_CHANGE,
 } from '../../constants/strings';
+import {setLogout} from './Actions';
 
 export const Forgot_Password = data => async dispatch => {
   dispatch({type: FORGOT_PASSWORD_LOADING});
@@ -47,8 +50,22 @@ export const Forgot_Password = data => async dispatch => {
         dispatch({type: FORGOT_PASSWORD_SUCCESS, payload: response});
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_ENTER_VALIDE_EMAIL);
-    dispatch({type: FORGOT_PASSWORD_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_ENTER_VALIDE_EMAIL);
+      dispatch({type: FORGOT_PASSWORD_FAUILER, payload: error});
+    }
   }
 };
 
@@ -91,8 +108,22 @@ export const Change_Password = data => async dispatch => {
           );
         });
     } catch (error) {
-      Alert.alert(TEXT_ERROR, TEXT_PASSWRD_NOT_CHANGE);
-      dispatch({type: CHANGE_PASSWORD_FAUILER, payload: error});
+      if (error == 'AxiosError: Request failed with status code 500') {
+        dispatch(setLogout());
+        ToastAndroid.show(
+          TEXT_TOKEN_CHANGE,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.LONG,
+        );
+        ToastAndroid.show(
+          TEXT_PLEASE_RELOGIN,
+          ToastAndroid.BOTTOM,
+          ToastAndroid.LONG,
+        );
+      } else {
+        Alert.alert(TEXT_ERROR, TEXT_PASSWRD_NOT_CHANGE);
+        dispatch({type: CHANGE_PASSWORD_FAUILER, payload: error});
+      }
     }
   }
 };

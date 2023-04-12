@@ -14,11 +14,14 @@ import {Alert, ToastAndroid} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   TEXT_ERROR,
+  TEXT_PLEASE_RELOGIN,
   TEXT_PRODUCT_DECRESED,
   TEXT_PRODUCT_INCRESED,
   TEXT_PRODUCT_NOT_DECRESED,
   TEXT_PRODUCT_NOT_INCRESED,
+  TEXT_TOKEN_CHANGE,
 } from '../../constants/strings';
+import {setLogout} from './Actions';
 
 export const Increase_Product = data => async dispatch => {
   dispatch({type: CART_INCREASE_DATA_LOADING});
@@ -46,8 +49,22 @@ export const Increase_Product = data => async dispatch => {
         );
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_INCRESED);
-    dispatch({type: CART_INCREASE_DATA_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_INCRESED);
+      dispatch({type: CART_INCREASE_DATA_FAUILER, payload: error});
+    }
   }
 };
 
@@ -77,8 +94,22 @@ export const Decrease_Product = data => async dispatch => {
         );
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_DECRESED);
-    dispatch({type: CART_DECREASE_DATA_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_PRODUCT_NOT_DECRESED);
+      dispatch({type: CART_DECREASE_DATA_FAUILER, payload: error});
+    }
   }
 };
 

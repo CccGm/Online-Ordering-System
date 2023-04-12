@@ -39,5 +39,6 @@ export default styles = StyleSheet.create({
   wlcome: {
     fontSize: 22,
     fontWeight: 'bold',
+    color: COLORS.gery77,
   },
 });

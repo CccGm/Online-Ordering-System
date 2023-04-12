@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 import {
   PRODUCT_DATA_FAUILER,
   PRODUCT_DATA_LOADING,
@@ -7,7 +7,12 @@ import {
 } from '../../constants/actionTypes';
 import axios from '../../helpers/axiosIntersepter';
 import {get_All_Product_Data} from '../api';
-import {TEXT_ERROR} from '../../constants/strings';
+import {
+  TEXT_ERROR,
+  TEXT_PLEASE_RELOGIN,
+  TEXT_TOKEN_CHANGE,
+} from '../../constants/strings';
+import {setLogout} from './Actions';
 
 export const Product_Data = data => async dispatch => {
   dispatch({type: PRODUCT_DATA_LOADING});
@@ -23,7 +28,21 @@ export const Product_Data = data => async dispatch => {
         dispatch({type: PRODUCT_DATA_SUCCESS, payload: response.data.data});
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_HOME_DATA_NOT_GET);
-    dispatch({type: PRODUCT_DATA_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_HOME_DATA_NOT_GET);
+      dispatch({type: PRODUCT_DATA_FAUILER, payload: error});
+    }
   }
 };

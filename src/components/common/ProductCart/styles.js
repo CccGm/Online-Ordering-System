@@ -19,7 +19,13 @@ export default styles = StyleSheet.create({
     height: 125,
     padding: 5,
   },
-  image: {width: '100%', height: '100%', flex: 1, borderRadius: 10},
+  image: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    borderRadius: 10,
+    backgroundColor: COLORS.white,
+  },
   textContainer: {
     padding: 5,
     height: 125,
@@ -28,7 +34,7 @@ export default styles = StyleSheet.create({
   },
   text: {
     fontSize: 22,
-    marginTop: 8,
+    marginTop: 3,
   },
   counterContainer: {
     flexDirection: 'row',

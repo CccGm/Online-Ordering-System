@@ -29,6 +29,7 @@ export default styles = StyleSheet.create({
     width: '70%',
     height: '100%',
     borderRadius: 5,
+    backgroundColor: COLORS.white,
   },
   text: {
     fontWeight: 'bold',

@@ -8,6 +8,7 @@ export default styles = StyleSheet.create({
   priceContainer: {
     justifyContent: 'center',
     marginHorizontal: 10,
+    marginTop: 5,
   },
   price: {
     backgroundColor: COLORS.info,

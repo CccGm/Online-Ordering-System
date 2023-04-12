@@ -23,6 +23,7 @@ import {resend_Otp} from '../api';
 import {
   TEXT_ERROR,
   TEXT_INVALID_LOGIN,
+  TEXT_LOGOUT_SUCCESS,
   TEXT_OTP_NOT_SEND,
   TEXT_OTP_SEND_IN_YOUR_MAIL,
 } from '../../constants/strings';
@@ -135,6 +136,11 @@ export const setLogout = data => async dispatch => {
     dispatch({type: PRODUCT_DATA_REMOVE});
     dispatch({type: REMOVE_USERDATA});
     dispatch(restoreStatus());
+    ToastAndroid.show(
+      TEXT_LOGOUT_SUCCESS,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
   } catch (error) {
     console.log(error);
   }

@@ -9,6 +9,7 @@ import {Cart_Data_Get} from '../redux/action/CartAction';
 import {Favorite_Data_Get} from '../redux/action/FavoriteAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {COLORS} from '../assets/theme/colors';
+import {History_Data_Get} from '../redux/action/CompleteOrder';
 
 const DashboardScreen = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const DashboardScreen = () => {
       dispatch({type: GET_USERDATA});
       dispatch(Cart_Data_Get());
       dispatch(Favorite_Data_Get());
+      dispatch(History_Data_Get());
     } else {
       check();
     }

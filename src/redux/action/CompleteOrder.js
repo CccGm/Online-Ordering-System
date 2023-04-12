@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from 'react-native';
+import {Alert, ToastAndroid} from 'react-native';
 import {
   CHECKOUT_PRODUCT_FAUILER,
   CHECKOUT_PRODUCT_LOADING,
@@ -15,7 +15,10 @@ import {
   TEXT_CART_DATA_NOT_ADD,
   TEXT_ERROR,
   TEXT_HISTORY_DATA_NOT_ADD,
+  TEXT_PLEASE_RELOGIN,
+  TEXT_TOKEN_CHANGE,
 } from '../../constants/strings';
+import {setLogout} from './Actions';
 
 export const History_Data_Get = data => async dispatch => {
   dispatch({type: HISTORY_PRODUCT_GET_LOADING});
@@ -34,8 +37,22 @@ export const History_Data_Get = data => async dispatch => {
         });
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_HISTORY_DATA_NOT_ADD);
-    dispatch({type: HISTORY_PRODUCT_GET_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_HISTORY_DATA_NOT_ADD);
+      dispatch({type: HISTORY_PRODUCT_GET_FAUILER, payload: error});
+    }
   }
 };
 
@@ -58,8 +75,22 @@ export const CheckOut_Data_Add = data => async dispatch => {
         dispatch({type: CHECKOUT_PRODUCT_SUCCESS, payload: response});
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_ADD);
-    dispatch({type: CHECKOUT_PRODUCT_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_CART_DATA_NOT_ADD);
+      dispatch({type: CHECKOUT_PRODUCT_FAUILER, payload: error});
+    }
   }
 };
 

@@ -26,7 +26,10 @@ import {
   TEXT_ERROR,
   TEXT_FAVORITE_DATA_NOT_ADD,
   TEXT_FAVORITE_DATA_NOT_GET,
+  TEXT_PLEASE_RELOGIN,
+  TEXT_TOKEN_CHANGE,
 } from '../../constants/strings';
+import {setLogout} from './Actions';
 
 export const Favorite_Data_Get = data => async dispatch => {
   dispatch({type: FAVORITE_PRODUCT_GET_LOADING});
@@ -42,8 +45,22 @@ export const Favorite_Data_Get = data => async dispatch => {
         dispatch({type: FAVORITE_PRODUCT_GET_SUCCESS, payload: response.data});
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_GET);
-    dispatch({type: FAVORITE_PRODUCT_GET_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_GET);
+      dispatch({type: FAVORITE_PRODUCT_GET_FAUILER, payload: error});
+    }
   }
 };
 
@@ -70,8 +87,22 @@ export const Favorite_Data_Add = data => async dispatch => {
         );
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_ADD);
-    dispatch({type: ADD_FAVORITE_PRODUCT_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_FAVORITE_DATA_NOT_ADD);
+      dispatch({type: ADD_FAVORITE_PRODUCT_FAUILER, payload: error});
+    }
   }
 };
 
@@ -98,8 +129,22 @@ export const Favorite_Data_Remove = data => async dispatch => {
         );
       });
   } catch (error) {
-    Alert.alert(TEXT_ERROR, TEXT_DATA_NOT_REMOVE_IN_FAVORITE);
-    dispatch({type: REMOVE_FAVORITE_PRODUCT_FAUILER, payload: error});
+    if (error == 'AxiosError: Request failed with status code 500') {
+      dispatch(setLogout());
+      ToastAndroid.show(
+        TEXT_TOKEN_CHANGE,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+      ToastAndroid.show(
+        TEXT_PLEASE_RELOGIN,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.LONG,
+      );
+    } else {
+      Alert.alert(TEXT_ERROR, TEXT_DATA_NOT_REMOVE_IN_FAVORITE);
+      dispatch({type: REMOVE_FAVORITE_PRODUCT_FAUILER, payload: error});
+    }
   }
 };
 

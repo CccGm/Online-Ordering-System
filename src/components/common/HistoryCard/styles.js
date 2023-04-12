@@ -3,7 +3,6 @@ import {COLORS} from '../../../assets/theme/colors';
 
 export default styles = StyleSheet.create({
   container: {
-    width: '95%',
     marginTop: 15,
     height: 150,
     elevation: 8,
@@ -19,22 +18,27 @@ export default styles = StyleSheet.create({
     height: 125,
     padding: 5,
   },
-  image: {width: '100%', height: '100%', flex: 1, borderRadius: 10},
+  image: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    borderRadius: 10,
+    backgroundColor: COLORS.white,
+  },
   textContainer: {
-    padding: 5,
     height: 125,
-    paddingLeft: 10,
-    width: '62%',
+    paddingLeft: 5,
+    width: '65%',
   },
   textHeader: {
-    fontSize: 22,
-    marginTop: 8,
+    fontSize: 18,
+    marginTop: 5,
     color: COLORS.blackaa,
     fontWeight: 'bold',
   },
   text: {
     color: COLORS.grey,
-    fontSize: 18,
-    // marginTop: 5,
+    fontSize: 12,
+    marginTop: 3,
   },
 });

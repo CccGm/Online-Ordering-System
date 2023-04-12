@@ -8,6 +8,11 @@ import {
 } from '../../../constants/strings';
 
 const HistoryCard = props => {
+  const datefull = new Date(props.item.createdAt);
+  const month = datefull.getMonth();
+  const dayy = datefull.getDay();
+  const year = datefull.getFullYear();
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -22,7 +27,7 @@ const HistoryCard = props => {
           {props.item.title}
         </Text>
         <Text style={[styles.text]} numberOfLines={1}>
-          {TEXT_ORDER_DATE} : {props.item.createdAt}
+          {TEXT_ORDER_DATE} : {dayy}/{month}/{year}
         </Text>
         <Text style={[styles.text]}>
           {TEXT_ORDER_QUANTITY} : {props.item.quantity}

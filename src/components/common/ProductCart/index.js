@@ -94,25 +94,13 @@ const ProductCart = props => {
         </Text>
 
         <View style={styles.counterContainer}>
-          {decreaseQuantity.loading == false ? (
-            <TouchableOpacity
-              style={styles.borderBtn}
-              onPress={() => {
-                dispatch(Decrease_Product(props.item._id));
-              }}>
-              <Text style={styles.boderBtnText}>-</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={[styles.borderBtn, {borderColor: COLORS.drakGrey}]}
-              disabled={true}>
-              <Text
-                style={[styles.boderBtnText, {color: COLORS.transparentBlack}]}>
-                -
-              </Text>
-            </TouchableOpacity>
-          )}
-
+          <TouchableOpacity
+            style={styles.borderBtn}
+            onPress={() => {
+              dispatch(Decrease_Product(props.item._id));
+            }}>
+            <Text style={styles.boderBtnText}>-</Text>
+          </TouchableOpacity>
           <Text
             style={[
               styles.boderBtnText,
@@ -124,48 +112,27 @@ const ProductCart = props => {
             ]}>
             {props.item.quantity}
           </Text>
-          {increaseQuantity.loading == false ? (
-            <TouchableOpacity
-              style={styles.borderBtn}
-              onPress={() => {
-                dispatch(Increase_Product(props.item._id));
-              }}>
-              <Text style={styles.boderBtnText}>+</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={[styles.borderBtn, {borderColor: COLORS.drakGrey}]}
-              disabled={true}>
-              <Text style={[styles.boderBtnText, {color: COLORS.transparent}]}>
-                +
-              </Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity
+            style={styles.borderBtn}
+            onPress={() => {
+              dispatch(Increase_Product(props.item._id));
+            }}>
+            <Text style={styles.boderBtnText}>+</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      {removeProduct.loading == false ? (
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            right: 10,
-            top: 10,
-          }}
-          onPress={() => {
-            dispatch(Cart_Data_Remove(props.item._id));
-          }}>
-          <Icon name={'close'} size={25} color={COLORS.red} />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            right: 10,
-            top: 10,
-          }}
-          disabled={true}>
-          <Icon name={'close'} size={25} color={COLORS.lightRed} />
-        </TouchableOpacity>
-      )}
+
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          right: 10,
+          top: 10,
+        }}
+        onPress={() => {
+          dispatch(Cart_Data_Remove(props.item._id));
+        }}>
+        <Icon name={'close'} size={25} color={COLORS.red} />
+      </TouchableOpacity>
     </View>
   );
 };
