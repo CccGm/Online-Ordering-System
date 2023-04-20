@@ -9,6 +9,7 @@ import axios from '../../helpers/axiosIntersepter';
 import {get_All_Product_Data} from '../api';
 import {
   TEXT_ERROR,
+  TEXT_HOME_DATA_NOT_GET,
   TEXT_PLEASE_RELOGIN,
   TEXT_TOKEN_CHANGE,
 } from '../../constants/strings';

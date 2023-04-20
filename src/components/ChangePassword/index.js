@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
   Alert,
-  ToastAndroid,
 } from 'react-native';
 import styles from './styles';
 import Feather from 'react-native-vector-icons/Feather';
@@ -41,7 +40,7 @@ const ChangePassword = () => {
     secureTextEntry: true,
   });
   const [Lform, setForm] = useState(null);
-  console.log(chagePass, 'pass----------');
+
   useEffect(() => {
     if (chagePass.data.status == 1 && chagePass.loading == false) {
       dispatch(setLogout());
