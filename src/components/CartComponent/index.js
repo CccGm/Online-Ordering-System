@@ -87,7 +87,11 @@ const CartComponent = () => {
     RazorpayCheckout.open(options)
       .then(data => {
         console.log(data, 'Payment Success----');
-        ToastAndroid.show(ToastAndroid.BOTTOM, ToastAndroid.SHORT);
+        ToastAndroid.show(
+          'Payment Success',
+          ToastAndroid.BOTTOM,
+          ToastAndroid.SHORT,
+        );
         dispatch(
           CheckOut_Data_Add({
             cart_id: cartData.data[0].cartId,
