@@ -62,17 +62,15 @@ const RegisterComponent = () => {
     if (form != null) {
       if (!form.Name) {
         Alert.alert(TEXT_ALERT, TEXT_ENTER_NAME);
-      }
-      if (!form.Mo_No) {
+      } else if (!form.Mo_No) {
         Alert.alert(TEXT_ALERT, TEXT_ENTER_MO_NO);
-      }
-      if (!form.Email) {
+      } else if (!form.Email) {
         Alert.alert(TEXT_ALERT, TEXT_ENTER_EMAIL);
-      }
-      if (!form.Password) {
+      } else if (!form.Password) {
         Alert.alert(TEXT_ALERT, TEXT_ENTER_PASSWORD);
-      }
-      if ((form.Name && form.Email && form.Mo_No && form.Password) != '') {
+      } else if (
+        (form.Name && form.Email && form.Mo_No && form.Password) != ''
+      ) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.Email)) {
           dispatch(Register_User(form));
         } else {
